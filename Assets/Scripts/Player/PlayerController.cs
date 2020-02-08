@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public bool speedUpPressed;
     public float birdHeight;
     public bool landed;
+    public bool controllable;
 
     [Header("基本属性")]
     public float axisSpeed;
@@ -53,10 +54,16 @@ public class PlayerController : MonoBehaviour
     /// 调整鸟飞行高度
     /// </summary>
     private void BirdHeightControl() {
-        birdHeight += Input.GetAxis("Mouse Y") * axisSpeed;
-        birdHeight = Mathf.Clamp(birdHeight, border_Bottom, border_Top);
+        if (!landed)
+        {
+            if (controllable)
+            {
+                birdHeight += Input.GetAxis("Mouse Y") * axisSpeed;
+                birdHeight = Mathf.Clamp(birdHeight, border_Bottom, border_Top);
+            }
 
-        bird.ChangeHeight(birdHeight);
+            bird.ChangeHeight(birdHeight);
+        }
     }
 
     /// <summary>
@@ -80,8 +87,7 @@ public class PlayerController : MonoBehaviour
     private void Land() {
         if (Input.GetMouseButtonDown(0)) {
             Collider2D[] cols;
-            cols = Physics2D.OverlapBoxAll(new Vector2(bird.transform.position.x + landPosCheckerOffset_X,landPosCheckerOffset_Y), new Vector2(landPosCheckerWidth, landPosCheckerHeight),landPosLayer);
-
+            cols = Physics2D.OverlapBoxAll(new Vector2(bird.transform.position.x + landPosCheckerOffset_X,landPosCheckerOffset_Y), new Vector2(landPosCheckerWidth, landPosCheckerHeight),0,landPosLayer);
             if (cols.Length > 0) {
                 bird.SetLanding(GetNearestLandPos(cols).transform.position);
                 landed = true;
@@ -94,6 +100,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) {
                 landed = false;
                 bird.TakeOff();
+
+                Invoke("GrandControl", 0.5f);
             }
         }
     }
@@ -117,6 +125,11 @@ public class PlayerController : MonoBehaviour
         }
 
         return col;
+    }
+
+    private void GrandControl()
+    {
+        controllable = true;
     }
 
     private void OnDrawGizmos()

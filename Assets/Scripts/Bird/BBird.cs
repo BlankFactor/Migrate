@@ -47,7 +47,7 @@ public class BBird : MonoBehaviour
     }
 
 
-    public virtual void Update()
+    public void Update()
     {
         CheckEnergy();    
     }
@@ -81,7 +81,7 @@ public class BBird : MonoBehaviour
     /// 修改物体高度 插值计算
     /// </summary>
     /// <param name="_posY">目标高度点</param>
-    public void ChangeHeight(float _posY) {
+    public virtual void ChangeHeight(float _posY) {
         if (transform.position.y != _posY) {
             Vector2 pos = transform.position;
             pos.y = Mathf.Lerp(pos.y, _posY, lerpSpeed);
@@ -92,7 +92,7 @@ public class BBird : MonoBehaviour
     /// <summary>
     /// 降落至目标地点
     /// </summary>
-    public void Land() {
+    public virtual void Land() {
         if (isLanding)
         {
             if (transform.position.Equals(landPos))
@@ -111,7 +111,7 @@ public class BBird : MonoBehaviour
     /// <summary>
     /// 起飞
     /// </summary>
-    public void TakeOff() {
+    public virtual void TakeOff() {
         isFlying = true;
         landed = false;
         canTakeOff = false;
@@ -147,7 +147,7 @@ public class BBird : MonoBehaviour
 
     public virtual void BirdDead() { }
 
-    public void SetSpeedUp(bool _v) {
+    public virtual void SetSpeedUp(bool _v) {
         isSpeedingUp = _v;
         if (isSpeedingUp)
             maxSpeed += inc_Speed;
@@ -157,7 +157,7 @@ public class BBird : MonoBehaviour
     public void SetFlying(bool _v) {
         isFlying = _v;
     }
-    public void SetLanding(Vector2 _pos) {
+    public virtual void SetLanding(Vector2 _pos) {
         isFlying = false;
         isLanding = true;
         landPos = _pos;
