@@ -164,9 +164,10 @@ MonoBehaviour:
   landPos: {x: 0, y: 0}
   energy: 100
   maxSpeed: 5
+  speedScale: 1
   acceleration: 3
   healthPoint: 0
-  lerpSpeed: 0.01
+  climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
@@ -176,8 +177,18 @@ MonoBehaviour:
   inc_Speed: 1
   rid: {fileID: 0}
   clusterPos: {x: 0, y: 0}
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  timer_ReflashClusterPos: 0
+  inPosition: 0
   inBorder: 0
   reflectionTime: 1
+  actionableRadius: 0.1
+  reflashClusterTime: 5
+  reflashProbability: 0.2
+  speedUpScale: 1.25
+  speedDownScale: 0.5
   leader: {fileID: 913466521}
 --- !u!50 &204663422
 Rigidbody2D:
@@ -194,9 +205,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -343,7 +354,7 @@ MonoBehaviour:
   birdHeight: 0
   landed: 1
   controllable: 0
-  axisSpeed: 0.3
+  heightPointSpeed: 0.2
   border_Top: 2.62
   border_Bottom: -2.8
   border_Width: 9
@@ -367,7 +378,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317586810
 GameObject:
@@ -469,9 +480,10 @@ MonoBehaviour:
   landPos: {x: 0, y: 0}
   energy: 100
   maxSpeed: 5
+  speedScale: 1
   acceleration: 3
   healthPoint: 0
-  lerpSpeed: 0.01
+  climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
@@ -481,8 +493,18 @@ MonoBehaviour:
   inc_Speed: 3
   rid: {fileID: 0}
   clusterPos: {x: 0, y: 0}
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  timer_ReflashClusterPos: 0
+  inPosition: 0
   inBorder: 0
-  reflectionTime: 1.5
+  reflectionTime: 1
+  actionableRadius: 0.1
+  reflashClusterTime: 5
+  reflashProbability: 0.2
+  speedUpScale: 1.25
+  speedDownScale: 0.5
   leader: {fileID: 913466521}
 --- !u!50 &494335424
 Rigidbody2D:
@@ -499,9 +521,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -843,9 +865,10 @@ MonoBehaviour:
   landPos: {x: 0, y: 0}
   energy: 100
   maxSpeed: 5
+  speedScale: 1
   acceleration: 3
   healthPoint: 0
-  lerpSpeed: 0.01
+  climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
@@ -855,8 +878,18 @@ MonoBehaviour:
   inc_Speed: 2
   rid: {fileID: 0}
   clusterPos: {x: 0, y: 0}
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  timer_ReflashClusterPos: 0
+  inPosition: 0
   inBorder: 0
-  reflectionTime: 2
+  reflectionTime: 1
+  actionableRadius: 0.1
+  reflashClusterTime: 5
+  reflashProbability: 0.2
+  speedUpScale: 1.25
+  speedDownScale: 0.5
   leader: {fileID: 913466521}
 --- !u!50 &894093889
 Rigidbody2D:
@@ -873,9 +906,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -971,6 +1004,7 @@ GameObject:
   - component: {fileID: 913466518}
   - component: {fileID: 913466520}
   - component: {fileID: 913466521}
+  - component: {fileID: 913466522}
   m_Layer: 0
   m_Name: LeaderBird
   m_TagString: Untagged
@@ -1058,9 +1092,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -1087,9 +1121,10 @@ MonoBehaviour:
   landPos: {x: 0, y: 0}
   energy: 100
   maxSpeed: 5
+  speedScale: 1
   acceleration: 3
   healthPoint: 0
-  lerpSpeed: 0.012
+  climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
@@ -1101,8 +1136,25 @@ MonoBehaviour:
   birds: []
   pivotDistance: 5
   pivotVerticalOffset: 0
-  borderHeight: 2
+  farBorderPlane: 2.5
+  nearBorderPlane: 0.594
   fbt: {fileID: 1229775217}
+--- !u!58 &913466522
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913466517}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &1229775215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,7 +1166,7 @@ GameObject:
   - component: {fileID: 1229775216}
   - component: {fileID: 1229775218}
   - component: {fileID: 1229775217}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FlyingBorderTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1219,9 +1271,10 @@ MonoBehaviour:
   landPos: {x: 0, y: 0}
   energy: 100
   maxSpeed: 5
+  speedScale: 1
   acceleration: 3
   healthPoint: 0
-  lerpSpeed: 0.01
+  climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
@@ -1231,8 +1284,18 @@ MonoBehaviour:
   inc_Speed: 3
   rid: {fileID: 0}
   clusterPos: {x: 0, y: 0}
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  timer_ReflashClusterPos: 0
+  inPosition: 0
   inBorder: 0
-  reflectionTime: 1.5
+  reflectionTime: 1
+  actionableRadius: 0.1
+  reflashClusterTime: 5
+  reflashProbability: 0.2
+  speedUpScale: 1.25
+  speedDownScale: 0.5
   leader: {fileID: 913466521}
 --- !u!50 &1424758515
 Rigidbody2D:
@@ -1249,9 +1312,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -1463,9 +1526,10 @@ MonoBehaviour:
   landPos: {x: 0, y: 0}
   energy: 100
   maxSpeed: 5
+  speedScale: 1
   acceleration: 3
   healthPoint: 0
-  lerpSpeed: 0.01
+  climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
@@ -1475,8 +1539,18 @@ MonoBehaviour:
   inc_Speed: 1
   rid: {fileID: 0}
   clusterPos: {x: 0, y: 0}
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  timer_ReflashClusterPos: 0
+  inPosition: 0
   inBorder: 0
   reflectionTime: 1
+  actionableRadius: 0.1
+  reflashClusterTime: 5
+  reflashProbability: 0.2
+  speedUpScale: 1.25
+  speedDownScale: 0.5
   leader: {fileID: 913466521}
 --- !u!50 &1629371544
 Rigidbody2D:
@@ -1493,9 +1567,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -1607,7 +1681,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1954147846
 GameObject:
@@ -1652,9 +1726,10 @@ MonoBehaviour:
   landPos: {x: 0, y: 0}
   energy: 100
   maxSpeed: 5
+  speedScale: 1
   acceleration: 3
   healthPoint: 0
-  lerpSpeed: 0.01
+  climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
@@ -1664,8 +1739,18 @@ MonoBehaviour:
   inc_Speed: 2
   rid: {fileID: 0}
   clusterPos: {x: 0, y: 0}
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  timer_ReflashClusterPos: 0
+  inPosition: 0
   inBorder: 0
-  reflectionTime: 2
+  reflectionTime: 1
+  actionableRadius: 0.1
+  reflashClusterTime: 5
+  reflashProbability: 0.2
+  speedUpScale: 1.25
+  speedDownScale: 0.5
   leader: {fileID: 913466521}
 --- !u!50 &1954147848
 Rigidbody2D:
@@ -1682,9 +1767,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -1768,6 +1853,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!1 &1973030174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1973030175}
+  m_Layer: 0
+  m_Name: HeightPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1973030175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973030174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035533820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,7 +1911,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2079586955
 GameObject:

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool controllable;
 
     [Header("基本属性")]
-    public float axisSpeed;
+    public float heightPointSpeed;
     
     [Header("飞行高度限制边界属性")]
     [Range(0,5)]
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         {
             if (controllable)
             {
-                birdHeight += Input.GetAxis("Mouse Y") * axisSpeed;
+                birdHeight += Input.GetAxis("Mouse Y") * heightPointSpeed;
                 birdHeight = Mathf.Clamp(birdHeight, border_Bottom, border_Top);
             }
 
@@ -123,7 +123,6 @@ public class PlayerController : MonoBehaviour
                 dis = temp;
             }
         }
-
         return col;
     }
 
@@ -139,7 +138,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Bottom, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Bottom, 0f));
 
         Gizmos.color = new Color(0.0f, 1f, 0f, 1.0f);
-        Gizmos.DrawSphere(new Vector3(bird.transform.position.x, birdHeight, 0), 0.3f);
+        Gizmos.DrawSphere(new Vector3(bird.transform.position.x, birdHeight, 0), 0.2f);
 
         Gizmos.color = new Color(0.0f, 0f, 1f, 0.5f);
         Gizmos.DrawCube(new Vector3(bird.transform.position.x + landPosCheckerOffset_X, landPosCheckerOffset_Y, 0), new Vector3(landPosCheckerWidth, landPosCheckerHeight,0));

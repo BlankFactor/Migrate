@@ -13,7 +13,9 @@ public class LeaderBird : BBird
     [Range(-5,5)]
     public float pivotVerticalOffset;
     [Range(0, 5)]
-    public float borderHeight;
+    public float farBorderPlane;
+    [Range(0, 1)]
+    public float nearBorderPlane;
 
     public FlyingBorderTrigger fbt;
 
@@ -25,7 +27,7 @@ public class LeaderBird : BBird
     public override void Start()
     {
         base.Start();
-        fbt.CreateTrigger(pivotDistance, pivotVerticalOffset, borderHeight);
+        fbt.CreateTrigger(pivotDistance, pivotVerticalOffset, farBorderPlane);
     }
 
     public override void TakeOff()
@@ -43,7 +45,7 @@ public class LeaderBird : BBird
 
         foreach (var v in birds)
         {
-            v.ChangeHeight(_posY);
+            v.ChangeHeight(_posY + Random.Range(0,0.05f));
         }
     }
 
@@ -76,7 +78,7 @@ public class LeaderBird : BBird
     /// <returns></returns>
     public Vector2 GetClusterPos() {
         Vector2 pos = Vector2.zero;
-        float x = Random.Range(0, pivotDistance);
+        float x = Random.Range(nearBorderPlane, pivotDistance);
         pos.x -= x;
         pos.y = Random.Range(GetBottomBorder(x), GetTopBorder(x));
 
@@ -92,7 +94,7 @@ public class LeaderBird : BBird
         Vector2 pivot = new Vector2(-pivotDistance, pivotVerticalOffset);
 
         Vector2 top = pivot;
-        top.y += borderHeight;
+        top.y += farBorderPlane;
 
         float a = top.y / top.x;
 
@@ -107,24 +109,79 @@ public class LeaderBird : BBird
         Vector2 pivot = new Vector2(-pivotDistance, pivotVerticalOffset);
 
         Vector2 bottom = pivot;
-        bottom.y -= borderHeight;
+        bottom.y -= farBorderPlane;
 
         float a = bottom.y / bottom.x;
 
         return a * -_x;
     }
 
+    /// <summary>
+    /// 检测跟随者所在位置的水平位置在飞行范围的什么位置
+    /// 返回1则在右边
+    /// 返回-1则在左边
+    /// 返回0则水平分量恰好在范围内
+    /// </summary>
+    /// <returns></returns>
+    public int CheckFollowerHorizonalCoord(Vector3 _pos)
+    {
+        Vector2 dir = _pos - transform.position;
+        if (transform.position.x - pivotDistance > dir.x)
+        {
+            return -1;
+        }
+        else if(dir.x > transform.position.x){
+            return 1;
+        }
+
+        return 0;
+    }
+    /// <summary>
+    /// 检测跟随者所在位置的垂直位置在飞行范围的什么位置
+    /// 返回1则在上
+    /// 返回-1则在下
+    /// 返回0则水平分量恰好在范围内
+    /// </summary>
+    /// <returns></returns>
+    public int CheckFollowerVerticalCoord(Vector3 _pos)
+    {
+        float top;
+        float bottom;
+
+        float origin = transform.position.y;
+        float topPoint = origin + farBorderPlane + pivotVerticalOffset;
+        float bottomPoint = origin - farBorderPlane + pivotVerticalOffset;
+
+        top = Mathf.Max(new float[] { origin, topPoint, bottomPoint });
+        bottom = Mathf.Min(new float[] { origin, topPoint, bottomPoint });
+
+        Vector2 dir = _pos - transform.position;
+        if (dir.y < bottom)
+        {
+            return -1;
+        }
+        else if (dir.y > top)
+        {
+            return 1;
+        }
+
+        return 0;
+    }
+
+
+
     private void OnDrawGizmos()
     {
         Vector2 pivot = new Vector3(transform.position.x - pivotDistance, transform.position.y + pivotVerticalOffset);
         Vector2 top = pivot;
-        top.y += borderHeight;
+        top.y += farBorderPlane;
         Vector2 bottom = pivot;
-        bottom.y -= borderHeight;
+        bottom.y -= farBorderPlane;
 
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(transform.position, top);
-        Gizmos.DrawLine(transform.position, bottom);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position + new Vector3(-nearBorderPlane, GetTopBorder(nearBorderPlane),0), top);
+        Gizmos.DrawLine(transform.position + new Vector3(-nearBorderPlane, -GetTopBorder(nearBorderPlane), 0), bottom);
+        Gizmos.DrawLine(transform.position + new Vector3(-nearBorderPlane, GetTopBorder(nearBorderPlane), 0), transform.position + new Vector3(-nearBorderPlane, -GetTopBorder(0.3f), 0));
         Gizmos.DrawLine(top, bottom);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, pivot);

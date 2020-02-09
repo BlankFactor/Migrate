@@ -21,10 +21,11 @@ public class BBird : MonoBehaviour
     [Header("基本属性")]
     public float energy;
     public float maxSpeed;
+    public float speedScale = 1;
     public float acceleration;
     public float healthPoint;
-    [Range(0,0.1f)]
-    public float lerpSpeed;
+    [Range(0,5f)]
+    public float climbSpeed;
     public float landSpeed;
 
     [Space]
@@ -47,7 +48,7 @@ public class BBird : MonoBehaviour
     }
 
 
-    public void Update()
+    public virtual void Update()
     {
         CheckEnergy();    
     }
@@ -65,14 +66,14 @@ public class BBird : MonoBehaviour
         if (isFlying)
         {
             Vector2 vel = rid.velocity;
-            vel.x += acceleration * Time.fixedDeltaTime;
-            vel.x = Mathf.Clamp(vel.x, 0, maxSpeed);
+            vel.x += acceleration  * Time.deltaTime;
+            vel.x = Mathf.Clamp(vel.x, 0, maxSpeed * speedScale);
             ChangeVelocity(vel);
         }
         else {
             Vector2 vel = rid.velocity;
-            vel.x -= acceleration * Time.fixedDeltaTime;
-            vel.x = Mathf.Clamp(vel.x, 0, maxSpeed);
+            vel.x -= acceleration * Time.deltaTime;
+            vel.x = Mathf.Clamp(vel.x, 0, maxSpeed* speedScale);
             ChangeVelocity(vel);
         }
     }
@@ -82,9 +83,10 @@ public class BBird : MonoBehaviour
     /// </summary>
     /// <param name="_posY">目标高度点</param>
     public virtual void ChangeHeight(float _posY) {
-        if (transform.position.y != _posY) {
+        if (transform.position.y != _posY && isFlying) {
             Vector2 pos = transform.position;
-            pos.y = Mathf.Lerp(pos.y, _posY, lerpSpeed);
+            //pos.y = Mathf.Lerp(pos.y, _posY, lerpSpeed);
+            pos.y = Mathf.MoveTowards(pos.y, _posY, Time.fixedDeltaTime * climbSpeed);
             transform.position = pos;
         }
     }
@@ -146,6 +148,14 @@ public class BBird : MonoBehaviour
     }
 
     public virtual void BirdDead() { }
+
+    /// <summary>
+    /// 设置速度缩放
+    /// </summary>
+    /// <param name="_scale"></param>
+    public void SetSpeedScale(float _scale = 1.0f) {
+        speedScale = _scale;
+    }
 
     public virtual void SetSpeedUp(bool _v) {
         isSpeedingUp = _v;
