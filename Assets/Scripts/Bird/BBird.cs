@@ -141,13 +141,21 @@ public class BBird : MonoBehaviour
                     cur_Energy -= Time.deltaTime * dec_Energy_Normal;
             }
         }
-        else {
+        else if(landed){
             cur_Energy += Time.deltaTime * inc_Energy;
             cur_Energy = Mathf.Clamp(cur_Energy, 0, energy);
         }
     }
 
-    public virtual void BirdDead() { }
+    public virtual void BirdDead() {
+        isFlying = false;
+        canTakeOff = false;
+
+        rid.bodyType = RigidbodyType2D.Dynamic;
+        rid.gravityScale = 0.8f;
+
+        Destroy(gameObject, 5);
+    }
 
     /// <summary>
     /// 设置速度缩放
@@ -167,10 +175,10 @@ public class BBird : MonoBehaviour
     public void SetFlying(bool _v) {
         isFlying = _v;
     }
-    public virtual void SetLanding(Vector2 _pos) {
+    public virtual void SetLanding(LandPosData _lp) {
         isFlying = false;
         isLanding = true;
-        landPos = _pos;
+        landPos = _lp.GetLandPos();
     }
 
     private void ChangeVelocity(Vector2 _vel) {

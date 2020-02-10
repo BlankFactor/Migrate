@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
             Collider2D[] cols;
             cols = Physics2D.OverlapBoxAll(new Vector2(bird.transform.position.x + landPosCheckerOffset_X,landPosCheckerOffset_Y), new Vector2(landPosCheckerWidth, landPosCheckerHeight),0,landPosLayer);
             if (cols.Length > 0) {
-                bird.SetLanding(GetNearestLandPos(cols).transform.position);
+                bird.SetLanding(GetNearestLandPos(cols).GetComponent<LandPosData>());
                 landed = true;
             }
         }
@@ -130,8 +130,7 @@ public class PlayerController : MonoBehaviour
     {
         controllable = true;
     }
-
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1.0f, 0f,0f, 1.0f);
         Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Top, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Top, 0f));

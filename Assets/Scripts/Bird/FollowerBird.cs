@@ -115,25 +115,26 @@ public class FollowerBird : BBird
         clusterPos = leader.GetClusterPos();
     }
 
-    public void Command_Land(Vector2 _pos) {
+    public void Command_Land(LandPosData _lp) {
         float time = Random.Range(0, reflectionTime);
-        SetLanding(_pos);
+        SetLanding(_lp);
         Invoke("GrandLand", time);
     }
 
-    public override void SetLanding(Vector2 _pos)
+    public override void SetLanding(LandPosData _lp)
     {
-        landPos = _pos;
+        landPos = _lp.GetLandPos();
+    }
+    private void GrandLand()
+    {
+        isFlying = false;
+        isLanding = true;
     }
 
     public override void BirdDead()
     {
+        base.BirdDead();
         leader.RemoveFollower(this);
-    }
-
-    private void GrandLand() {
-        isFlying = false;
-        isLanding = true;
     }
 
     private void SetInBorder(bool _v) {
@@ -144,7 +145,7 @@ public class FollowerBird : BBird
     /// 更新集群坐标
     /// </summary>
     private void ReflashClusterPos() {
-        if (inPosition)
+        if (inPosition && isFlying)
         {
             if (timer_ReflashClusterPos < 0 )
             {

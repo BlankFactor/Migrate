@@ -58,18 +58,20 @@ public class LeaderBird : BBird
         }
     }
 
-    public override void SetLanding(Vector2 _pos)
+    public override void SetLanding(LandPosData _lp)
     {
-        base.SetLanding(_pos);
+        base.SetLanding(_lp);
         foreach (var v in birds) {
-            v.Command_Land(_pos);
+            v.Command_Land(_lp);
         }
     }
     public void AddFollower(FollowerBird _fb) {
         birds.Add(_fb);
+        GameManager.instance.Set_Count_Followers(birds.Count);
     }
     public void RemoveFollower(FollowerBird _fb) {
         birds.Remove(_fb);
+        GameManager.instance.Set_Count_Followers(birds.Count);
     }
 
     /// <summary>

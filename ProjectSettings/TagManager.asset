@@ -42,3 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Backgroud_Sky
+    uniqueID: 3974131361
+    locked: 0
+  - name: FollowerBird
+    uniqueID: 891001577
+    locked: 0
+  - name: LeaderBird
+    uniqueID: 4124430529
+    locked: 0
+  - name: terrain
+    uniqueID: 3995611811
+    locked: 0
