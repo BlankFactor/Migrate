@@ -12,6 +12,10 @@ public class LandPosData : MonoBehaviour
     [Range(-3,3)]
     public float radius = 1;
 
+    [Header("休息处设定")]
+    public bool energy;
+    public bool healthPoint;
+
     public Vector2 GetLandPos() {
         Vector2 leftPoint = transform.position;
         Vector2 rightPoint = transform.position;
@@ -42,5 +46,18 @@ public class LandPosData : MonoBehaviour
         rightPoint.y += offsetY;
 
         Gizmos.DrawLine(leftPoint, rightPoint);
+    }
+
+    /// <summary>
+    /// 激活休息处动作
+    /// </summary>
+    /// <param name="bird"></param>
+    public void Action(BBird bird) {
+        if (energy) {
+            bird.SetRestoreEnergy(true);
+        }
+        if (healthPoint) {
+            bird.SetRestoreHP(true);
+        }
     }
 }

@@ -6,6 +6,7 @@ public class LeaderBird : BBird
 {
     [Header("鸟群控制设定")]
     public List<FollowerBird> birds;
+    public LayerMask teamlessBirdLayer;
 
     [Header("鸟群飞行三角范围设定")]
     [Range(0,10)]
@@ -32,10 +33,24 @@ public class LeaderBird : BBird
 
     public override void TakeOff()
     {
+        SearchTeamlessBird();
+
         base.TakeOff();
 
         foreach (var v in birds) {
             v.Command_TakeOff();
+        }
+    }
+
+    /// <summary>
+    /// 寻找附近的无团队鸟 并将其加入队伍行列
+    /// </summary>
+    private void SearchTeamlessBird() {
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 5.0f, teamlessBirdLayer);
+        if (cols.Length > 0) {
+            foreach (var v in cols) {
+                v.SendMessage("SetLeader", this);
+            }
         }
     }
 
@@ -61,6 +76,7 @@ public class LeaderBird : BBird
     public override void SetLanding(LandPosData _lp)
     {
         base.SetLanding(_lp);
+
         foreach (var v in birds) {
             v.Command_Land(_lp);
         }

@@ -16,7 +16,11 @@ public class BBird : MonoBehaviour
     public bool landed = true;
     public bool canTakeOff = true;
 
+    public bool restoreEnergy;
+    public bool restoreHP;
+
     public Vector2 landPos;
+    public LandPosData lpd;
 
     [Header("基本属性")]
     public float energy;
@@ -24,7 +28,7 @@ public class BBird : MonoBehaviour
     public float speedScale = 1;
     public float acceleration;
     public float healthPoint;
-    [Range(0,5f)]
+    [Range(0, 5f)]
     public float climbSpeed;
     public float landSpeed;
 
@@ -50,7 +54,8 @@ public class BBird : MonoBehaviour
 
     public virtual void Update()
     {
-        CheckEnergy();    
+        CheckEnergy();
+        CheckHealthPoint();
     }
 
     public virtual void FixedUpdate()
@@ -66,14 +71,14 @@ public class BBird : MonoBehaviour
         if (isFlying)
         {
             Vector2 vel = rid.velocity;
-            vel.x += acceleration  * Time.deltaTime;
+            vel.x += acceleration * Time.deltaTime;
             vel.x = Mathf.Clamp(vel.x, 0, maxSpeed * speedScale);
             ChangeVelocity(vel);
         }
         else {
             Vector2 vel = rid.velocity;
             vel.x -= acceleration * Time.deltaTime;
-            vel.x = Mathf.Clamp(vel.x, 0, maxSpeed* speedScale);
+            vel.x = Mathf.Clamp(vel.x, 0, maxSpeed * speedScale);
             ChangeVelocity(vel);
         }
     }
@@ -102,6 +107,8 @@ public class BBird : MonoBehaviour
                 landed = true;
                 isLanding = false;
                 canTakeOff = true;
+
+                lpd.Action(this);
             }
             else
             {
@@ -116,7 +123,12 @@ public class BBird : MonoBehaviour
     public virtual void TakeOff() {
         isFlying = true;
         landed = false;
+        isLanding = false;
         canTakeOff = false;
+
+        lpd = null;
+        SetRestoreEnergy(false);
+        SetRestoreHP(false);
 
         Vector2 vel = rid.velocity;
         vel = new Vector2(maxSpeed / 2, 0);
@@ -141,10 +153,28 @@ public class BBird : MonoBehaviour
                     cur_Energy -= Time.deltaTime * dec_Energy_Normal;
             }
         }
-        else if(landed){
+        else if (landed && restoreEnergy) {
             cur_Energy += Time.deltaTime * inc_Energy;
             cur_Energy = Mathf.Clamp(cur_Energy, 0, energy);
         }
+    }
+    /// <summary>
+    /// 检测生命值
+    /// </summary>
+    private void CheckHealthPoint() {
+        cur_healthPoint -= dec_HelathPoint * Time.deltaTime;
+
+        if (restoreHP) {
+            cur_healthPoint += inc_HealthPoint * Time.deltaTime;
+            cur_healthPoint = Mathf.Clamp(cur_healthPoint, 0, healthPoint);
+        }
+
+        if (cur_healthPoint <= 0) {
+            BirdDead();
+        }
+    }
+    private void SetDec_HealthPoint(float _v) {
+        dec_HelathPoint = _v;
     }
 
     public virtual void BirdDead() {
@@ -179,10 +209,19 @@ public class BBird : MonoBehaviour
         isFlying = false;
         isLanding = true;
         landPos = _lp.GetLandPos();
+        lpd = _lp;
     }
 
     private void ChangeVelocity(Vector2 _vel) {
         rid.velocity = _vel;
         cur_Speed = _vel.x;
+    }
+
+    public void SetRestoreEnergy(bool _v) {
+        restoreEnergy = _v;
+    }
+    public void SetRestoreHP(bool _v)
+    {
+        restoreHP = _v;
     }
 }

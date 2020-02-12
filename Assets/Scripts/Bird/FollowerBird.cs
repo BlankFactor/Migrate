@@ -33,11 +33,12 @@ public class FollowerBird : BBird
     public override void Start()
     {
         base.Start();
-        leader.AddFollower(this);
     }
 
     public override void Update()
     {
+        if (leader == null) return;
+
         base.Update();
         CheckInPosition();
         CalibratePos();
@@ -121,9 +122,22 @@ public class FollowerBird : BBird
         Invoke("GrandLand", time);
     }
 
+    /// <summary>
+    /// 设置领导者 并修改自己Tag值
+    /// </summary>
+    /// <param name="_ld"></param>
+    public void SetLeader(LeaderBird _ld) {
+        leader = _ld;
+
+        _ld.AddFollower(this);
+        transform.tag = "FollowerBird";
+        gameObject.layer = 0;
+    }
+
     public override void SetLanding(LandPosData _lp)
     {
         landPos = _lp.GetLandPos();
+        lpd = _lp;
     }
     private void GrandLand()
     {
@@ -164,6 +178,8 @@ public class FollowerBird : BBird
 
     private void OnDrawGizmos()
     {
+        if (leader == null) return;
+
         Gizmos.color = Color.cyan;
         Vector2 v2 = leader.transform.position;
         Gizmos.DrawSphere(v2 + clusterPos, actionableRadius);

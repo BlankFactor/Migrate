@@ -126,12 +126,15 @@ MonoBehaviour:
   isLanding: 0
   landed: 1
   canTakeOff: 1
+  restoreEnergy: 0
+  restoreHP: 0
   landPos: {x: 0, y: 0}
+  lpd: {fileID: 0}
   energy: 100
   maxSpeed: 5
   speedScale: 1
   acceleration: 3
-  healthPoint: 0
+  healthPoint: 100
   climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1
@@ -142,6 +145,9 @@ MonoBehaviour:
   inc_Speed: 3
   rid: {fileID: 0}
   birds: []
+  teamlessBirdLayer:
+    serializedVersion: 2
+    m_Bits: 0
   pivotDistance: 3.68
   pivotVerticalOffset: 0
   farBorderPlane: 1.73

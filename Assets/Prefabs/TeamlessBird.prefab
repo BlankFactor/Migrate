@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 9040015997572372620}
   - component: {fileID: 9040015997572372723}
   - component: {fileID: 9040015997572372623}
-  m_Layer: 0
-  m_Name: Follower
-  m_TagString: FollowerBird
+  m_Layer: 10
+  m_Name: TeamlessBird
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,12 +125,15 @@ MonoBehaviour:
   isLanding: 0
   landed: 1
   canTakeOff: 1
+  restoreEnergy: 0
+  restoreHP: 0
   landPos: {x: 0, y: 0}
+  lpd: {fileID: 0}
   energy: 100
   maxSpeed: 5
   speedScale: 1
   acceleration: 3
-  healthPoint: 0
+  healthPoint: 100
   climbSpeed: 1
   landSpeed: 2
   dec_Energy_Normal: 1

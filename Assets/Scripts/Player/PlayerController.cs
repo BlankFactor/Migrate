@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
             if (cols.Length > 0) {
                 bird.SetLanding(GetNearestLandPos(cols).GetComponent<LandPosData>());
                 landed = true;
+                CameraManager.instance.ConverToFarCamera();
             }
         }
     }
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviour
                 bird.TakeOff();
 
                 Invoke("GrandControl", 0.5f);
+                CameraManager.instance.ConverToNearCamera();
             }
         }
     }
