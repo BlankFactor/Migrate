@@ -131,7 +131,7 @@ public class FollowerBird : BBird
 
         _ld.AddFollower(this);
         transform.tag = "FollowerBird";
-        gameObject.layer = 0;
+        gameObject.layer = 11;
     }
 
     public override void SetLanding(LandPosData _lp)

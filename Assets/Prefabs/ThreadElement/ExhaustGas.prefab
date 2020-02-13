@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCreating: 0
   isDisabling: 0
-  forever: 1
+  forever: 0
   enable: 1
   triggerComplete: 0
   timer_Life: 0
@@ -58,7 +58,8 @@ MonoBehaviour:
   offset_X: 0
   time_Life: 10
   time_Start: 3
-  speed: 2.3
+  dec_HealthPoint: 5
+  speed: 2.2
 --- !u!198 &1954179644728252091
 ParticleSystem:
   m_ObjectHideFlags: 0

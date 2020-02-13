@@ -174,7 +174,7 @@ public class BBird : MonoBehaviour
         }
     }
     private void SetDec_HealthPoint(float _v) {
-        dec_HelathPoint = _v;
+        dec_HelathPoint += _v;
     }
 
     public virtual void BirdDead() {
@@ -215,6 +215,11 @@ public class BBird : MonoBehaviour
     private void ChangeVelocity(Vector2 _vel) {
         rid.velocity = _vel;
         cur_Speed = _vel.x;
+    }
+
+    public float GetCurSpeed()
+    {
+        return cur_Speed;
     }
 
     public void SetRestoreEnergy(bool _v) {

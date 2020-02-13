@@ -32,6 +32,8 @@ public class ExhaustGas : MonoBehaviour
     public float time_Life;
     public float time_Start;
 
+    [Space]
+    public float dec_HealthPoint;
     public float speed;
 
     private void Start()
@@ -197,10 +199,15 @@ public class ExhaustGas : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(1);
+        if (collision.tag.Contains("Bird")) {
+            collision.SendMessage("SetDec_HealthPoint", dec_HealthPoint);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (collision.tag.Contains("Bird"))
+        {
+            collision.SendMessage("SetDec_HealthPoint", -dec_HealthPoint);
+        }
     }
 }
