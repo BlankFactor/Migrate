@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     [Header("当前状态")]
     public bool speedUpPressed;
     public float birdHeight;
@@ -32,6 +34,11 @@ public class PlayerController : MonoBehaviour
     [Header("对象及组件")]
     public LeaderBird bird;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         landed = true;
@@ -39,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (bird == null) return;
+
         if (!landed)
         {
             BirdHeightControl();
@@ -132,8 +141,18 @@ public class PlayerController : MonoBehaviour
     {
         controllable = true;
     }
+
+    public void SetBird(LeaderBird _bird) {
+        bird = _bird;
+    }
+    public void ClearBird() {
+        bird = null;
+    }
+
     private void OnDrawGizmosSelected()
     {
+        if (bird == null) return;
+
         Gizmos.color = new Color(1.0f, 0f,0f, 1.0f);
         Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Top, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Top, 0f));
         Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Bottom, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Bottom, 0f));

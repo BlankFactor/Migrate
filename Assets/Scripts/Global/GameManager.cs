@@ -8,20 +8,15 @@ public class GameManager : MonoBehaviour
 
     [Header("当前游戏状态")]
     public bool gameStart;
+    public bool leaderAlive;
 
     [Space]
     public float cur_Count_Followers;
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != null) {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+        instance = this;
+        leaderAlive = true;
     }
 
     public void StartGame() {
@@ -29,6 +24,12 @@ public class GameManager : MonoBehaviour
     }
     public void EndGame() {
 
+    }
+
+    public void leaderBirdDead()
+    {
+        PlayerController.instance.ClearBird();
+        leaderAlive = false;
     }
 
     public void Set_Count_Followers(int _v) {

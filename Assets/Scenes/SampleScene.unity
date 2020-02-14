@@ -1962,6 +1962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStart: 0
+  leaderAlive: 0
   cur_Count_Followers: 0
 --- !u!1 &1424758513
 GameObject:

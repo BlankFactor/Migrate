@@ -186,7 +186,11 @@ public class LeaderBird : BBird
         return 0;
     }
 
-
+    public override void BirdDead()
+    {
+        base.BirdDead();
+        GameManager.instance.leaderBirdDead();
+    }
 
     private void OnDrawGizmos()
     {
