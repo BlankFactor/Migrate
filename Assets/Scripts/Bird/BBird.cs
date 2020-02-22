@@ -26,6 +26,7 @@ public class BBird : MonoBehaviour
     public float energy;
     public float maxSpeed;
     public float speedScale = 1;
+    private int speedScale_Animator = 1;
     public float acceleration;
     public float healthPoint;
     [Range(0, 5f)]
@@ -42,10 +43,14 @@ public class BBird : MonoBehaviour
 
     [Header("组件及对象")]
     public Rigidbody2D rid;
+    private SpriteRenderer spriteRender;
+    private Animator animator;
 
     public virtual void Start()
     {
         rid = GetComponent<Rigidbody2D>();
+        spriteRender = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
 
         cur_Energy = energy;
         cur_healthPoint = healthPoint;
@@ -56,6 +61,7 @@ public class BBird : MonoBehaviour
     {
         CheckEnergy();
         CheckHealthPoint();
+        SwitchAnimation();
     }
 
     public virtual void FixedUpdate()
@@ -108,6 +114,7 @@ public class BBird : MonoBehaviour
                 isLanding = false;
                 canTakeOff = true;
 
+                SetSpeedScale();
                 lpd.Action(this);
             }
             else
@@ -187,12 +194,27 @@ public class BBird : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
+    private void SwitchAnimation() {
+        animator.SetBool("Flying", isFlying);
+        animator.SetBool("SpeedingUp", isSpeedingUp);
+        animator.SetBool("Landing", isLanding);
+        animator.SetInteger("SpeedScale", speedScale_Animator);
+        animator.SetBool("Landed", landed);
+    }
+
     /// <summary>
     /// 设置速度缩放
     /// </summary>
     /// <param name="_scale"></param>
     public void SetSpeedScale(float _scale = 1.0f) {
         speedScale = _scale;
+
+        if (speedScale > 1)
+            speedScale_Animator = 2;
+        else if (speedScale < 1)
+            speedScale_Animator = 0;
+        else if(speedScale == 1.0f)
+            speedScale_Animator = 1;
     }
 
     public virtual void SetSpeedUp(bool _v) {
@@ -210,12 +232,18 @@ public class BBird : MonoBehaviour
         isLanding = true;
         landPos = _lp.GetLandPos();
         lpd = _lp;
+
+        // 重设速度缩放
+        if(isSpeedingUp)
+            SetSpeedUp(false);
+        SetSpeedScale();
     }
 
     private void ChangeVelocity(Vector2 _vel) {
         rid.velocity = _vel;
         cur_Speed = _vel.x;
     }
+
 
     public float GetCurSpeed()
     {

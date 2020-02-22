@@ -54,7 +54,7 @@ public class FollowerBird : BBird
     /// 在飞行状态中校准飞行位置
     /// </summary>
     public void CalibratePos() {
-        if (!isFlying) { return; }
+        if (!isFlying || isLanding) { return; }
 
         if (!inPosition)
         {
@@ -131,6 +131,7 @@ public class FollowerBird : BBird
 
         _ld.AddFollower(this);
         transform.tag = "FollowerBird";
+        transform.name = "Follower";
         gameObject.layer = 11;
     }
 

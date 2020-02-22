@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         landed = true;
+        ResetBirdHeight();
     }
 
     void Update()
@@ -57,6 +58,10 @@ public class PlayerController : MonoBehaviour
         else {
             TakeOff();
         }
+    }
+
+    void ResetBirdHeight() {
+        birdHeight = (border_Top + border_Bottom) / 2;
     }
 
     /// <summary>
@@ -110,6 +115,9 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) {
                 landed = false;
                 bird.TakeOff();
+
+                // 高度初始化
+                ResetBirdHeight();
 
                 Invoke("GrandControl", 0.5f);
                 CameraManager.instance.ConverToNearCamera();

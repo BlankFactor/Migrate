@@ -9,11 +9,11 @@ public class FlyingBorderTrigger : MonoBehaviour
     public void CreateTrigger(float _dis,float _offset,float _height) {
         Vector2[] points = pc.GetPath(0);
 
-        points[1].x = -(_dis / 5);
-        points[1].y = (_offset + _height) / 5;
+        points[1].x = -(_dis);
+        points[1].y = (_offset + _height);
 
-        points[2].x = -(_dis / 5);
-        points[2].y = (_offset - _height) / 5;
+        points[2].x = -(_dis);
+        points[2].y = (_offset - _height);
 
         pc.SetPath(0, points);
     }

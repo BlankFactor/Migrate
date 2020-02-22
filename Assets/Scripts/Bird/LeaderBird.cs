@@ -68,8 +68,14 @@ public class LeaderBird : BBird
     {
         base.SetSpeedUp(_v);
 
-        foreach (var v in birds) {
+        StartCoroutine(CallSpeedUp(_v));
+    }
+
+    IEnumerator CallSpeedUp(bool _v) {
+        foreach (var v in birds)
+        {
             v.SetSpeedUp(_v);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
