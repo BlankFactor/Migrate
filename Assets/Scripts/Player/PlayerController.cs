@@ -16,11 +16,11 @@ public class PlayerController : MonoBehaviour
     public float heightPointSpeed;
     
     [Header("飞行高度限制边界属性")]
-    [Range(0,5)]
+    [Range(0,15)]
     public float border_Top;
-    [Range(-5, 0)]
+    [Range(-15, 0)]
     public float border_Bottom;
-    [Range(0,9)]
+    public float border_Offset;
     public float border_Width;
 
     [Space]
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void ResetBirdHeight() {
-        birdHeight = (border_Top + border_Bottom) / 2;
+        birdHeight = (border_Top + 2 * border_Offset + border_Bottom) / 2;
     }
 
     /// <summary>
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             if (controllable)
             {
                 birdHeight += Input.GetAxis("Mouse Y") * heightPointSpeed;
-                birdHeight = Mathf.Clamp(birdHeight, border_Bottom, border_Top);
+                birdHeight = Mathf.Clamp(birdHeight, border_Bottom + border_Offset, border_Top + border_Offset);
             }
 
             bird.ChangeHeight(birdHeight);
@@ -162,8 +162,8 @@ public class PlayerController : MonoBehaviour
         if (bird == null) return;
 
         Gizmos.color = new Color(1.0f, 0f,0f, 1.0f);
-        Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Top, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Top, 0f));
-        Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Bottom, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Bottom, 0f));
+        Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Top + border_Offset, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Top + border_Offset, 0f));
+        Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Bottom + border_Offset, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Bottom + border_Offset, 0f));
 
         Gizmos.color = new Color(0.0f, 1f, 0f, 1.0f);
         Gizmos.DrawSphere(new Vector3(bird.transform.position.x, birdHeight, 0), 0.2f);

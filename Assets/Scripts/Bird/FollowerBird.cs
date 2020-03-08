@@ -102,8 +102,8 @@ public class FollowerBird : BBird
         if ( isFlying && !transform.position.y.Equals(_posY + clusterPos.y))
         {
             Vector2 pos = transform.position;
-            pos.y = Mathf.Lerp(pos.y, _posY + clusterPos.y, 0.012f);
-            //pos.y = Mathf.MoveTowards(pos.y, _posY + clusterPos.y, Time.deltaTime * climbSpeed);
+            //pos.y = Mathf.Lerp(pos.y, _posY + clusterPos.y, 0.012f);
+            pos.y = Mathf.MoveTowards(pos.y, _posY + clusterPos.y, Time.deltaTime * climbSpeed);
             transform.position = pos;
         }
     }

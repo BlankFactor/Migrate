@@ -14,6 +14,11 @@ public class WorldTimeManager : MonoBehaviour
     public int days = 0;
     public float sec = 1440;
 
+    public float hour;
+
+    [Space]
+    public bool stop = false;
+
     [Header("时间设定")]
     public float timeScale = 60;
 
@@ -30,12 +35,23 @@ public class WorldTimeManager : MonoBehaviour
 
     private void Update()
     {
+        if (stop) return;
+
         RecordTime();
         ReflashLightColor();
+        ReflashMaterialColor();
     }
 
+    /// <summary>
+    /// 更新光源颜色及其他shader颜色
+    /// </summary>
     private void ReflashLightColor() {
         globalLight.color = gradient.Evaluate(time);
+        
+    }
+
+    private void ReflashMaterialColor() {
+        ColorController.instance.SetColor(time);
     }
 
     private void RecordTime() {
@@ -49,5 +65,6 @@ public class WorldTimeManager : MonoBehaviour
         }
 
         time = (1440f - sec) / 1440f;
+        hour = time * 24;
     }
 }

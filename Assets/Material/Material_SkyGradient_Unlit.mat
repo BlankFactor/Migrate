@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8d0fcc87b8c3d63418e9d6f21008d271, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -29,4 +29,4 @@ Material:
     - Color_353D90DF: {r: 0, g: 0, b: 0, a: 0}
     - _FogColor: {r: 0.2015842, g: 0.22379367, b: 0.2830189, a: 0}
     - _TimeOfDay: {r: 1, g: 1, b: 1, a: 0}
-    - _TintColor: {r: 0.60960305, g: 0.9679191, b: 0.9716981, a: 1}
+    - _TintColor: {r: 0.29645023, g: 0.4743879, b: 0.60803485, a: 1}

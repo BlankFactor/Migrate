@@ -9,11 +9,11 @@ public class LeaderBird : BBird
     public LayerMask teamlessBirdLayer;
 
     [Header("鸟群飞行三角范围设定")]
-    [Range(0,10)]
+    [Range(0,20)]
     public float pivotDistance;
-    [Range(-5,5)]
+    [Range(-10,10)]
     public float pivotVerticalOffset;
-    [Range(0, 5)]
+    [Range(0, 10)]
     public float farBorderPlane;
     [Range(0, 1)]
     public float nearBorderPlane;

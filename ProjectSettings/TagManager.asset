@@ -19,7 +19,7 @@ TagManager:
   - Border
   - TeamlessLayer
   - Bird
-  - 
+  - PostProcessing
   - 
   - 
   - 
@@ -51,6 +51,12 @@ TagManager:
     locked: 0
   - name: LeaderBird
     uniqueID: 4124430529
+    locked: 0
+  - name: FarBackground
+    uniqueID: 1896937877
+    locked: 0
+  - name: CloseBackground
+    uniqueID: 1918573511
     locked: 0
   - name: terrain
     uniqueID: 3995611811
