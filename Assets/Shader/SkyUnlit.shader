@@ -9,6 +9,7 @@
 		_Speed_X("Speed_X",Range(0,1)) = 0.05
 		_Speed_Y("Speed_Y",Range(0,1)) = 0.03
     }
+
     SubShader
     {
         Tags { "RenderType"="Transparent" "Queue" = "Transparent"}

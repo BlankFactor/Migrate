@@ -146,7 +146,7 @@ public class FollowerBird : BBird
         isLanding = true;
     }
 
-    public override void BirdDead()
+    protected override void BirdDead()
     {
         base.BirdDead();
         leader.RemoveFollower(this);

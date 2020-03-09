@@ -9,6 +9,9 @@ public class BBird : MonoBehaviour
     public float cur_Energy;
     public float cur_healthPoint;
 
+    [Space]
+    public bool alive = true;
+
     [SerializeField]
     public bool isFlying = false;
     public bool isSpeedingUp = false;
@@ -145,7 +148,7 @@ public class BBird : MonoBehaviour
     /// <summary>
     /// 检测体力
     /// </summary>
-    private void CheckEnergy() {
+    protected virtual void CheckEnergy() {
         if (isFlying)
         {
             if (cur_Energy <= 0)
@@ -184,9 +187,11 @@ public class BBird : MonoBehaviour
         dec_HelathPoint += _v;
     }
 
-    public virtual void BirdDead() {
+    protected virtual void BirdDead() {
         isFlying = false;
         canTakeOff = false;
+
+        alive = false;
 
         rid.bodyType = RigidbodyType2D.Dynamic;
         rid.gravityScale = 0.8f;

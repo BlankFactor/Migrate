@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LeaderBird : BBird
 {
@@ -20,6 +21,11 @@ public class LeaderBird : BBird
 
     public FlyingBorderTrigger fbt;
 
+    [Header("视野黑边")]
+    public Volume vignette;
+    [Space]
+    public float energy_Threadhold = 20;
+
     public override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -29,6 +35,17 @@ public class LeaderBird : BBird
     {
         base.Start();
         fbt.CreateTrigger(pivotDistance, pivotVerticalOffset, farBorderPlane);
+    }
+
+    protected override void CheckEnergy()
+    {
+        base.CheckEnergy();
+
+
+        if (alive && cur_Energy <= energy_Threadhold) {
+            vignette.weight = (energy_Threadhold - cur_Energy) / energy_Threadhold;
+            vignette.weight = Mathf.Clamp(vignette.weight, 0, 1);
+        }
     }
 
     public override void TakeOff()
@@ -192,10 +209,19 @@ public class LeaderBird : BBird
         return 0;
     }
 
-    public override void BirdDead()
+    protected override void BirdDead()
     {
         base.BirdDead();
         GameManager.instance.leaderBirdDead();
+        StartCoroutine(RemoveVignetee());
+    }
+
+    private IEnumerator RemoveVignetee() {
+        while (vignette.weight != 0) {
+            vignette.weight -= Time.deltaTime * 0.5f;
+            vignette.weight = Mathf.Clamp(vignette.weight, 0, 1);
+            yield return Time.deltaTime;
+        }
     }
 
     private void OnDrawGizmos()

@@ -12,6 +12,9 @@ public class WorldTimeManager : MonoBehaviour
     public float time = 0f;
 
     public int days = 0;
+
+    // 24h 共 1440s 60s/h 60缩放量实则 1s/h
+    [Range(0,1440)]
     public float sec = 1440;
 
     public float hour;
@@ -22,15 +25,15 @@ public class WorldTimeManager : MonoBehaviour
     [Header("时间设定")]
     public float timeScale = 60;
 
-    [Header("光照设定")]
-    public Gradient gradient;
-
-    [Header("光源")]
-    public Light2D globalLight;
-
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        days = 0;
+        sec = 1440;
     }
 
     private void Update()
@@ -38,20 +41,15 @@ public class WorldTimeManager : MonoBehaviour
         if (stop) return;
 
         RecordTime();
-        ReflashLightColor();
-        ReflashMaterialColor();
+        ReflashColor();
     }
 
     /// <summary>
     /// 更新光源颜色及其他shader颜色
     /// </summary>
-    private void ReflashLightColor() {
-        globalLight.color = gradient.Evaluate(time);
-        
-    }
-
-    private void ReflashMaterialColor() {
+    private void ReflashColor() {
         ColorController.instance.SetColor(time);
+
     }
 
     private void RecordTime() {
@@ -66,5 +64,13 @@ public class WorldTimeManager : MonoBehaviour
 
         time = (1440f - sec) / 1440f;
         hour = time * 24;
+    }
+
+    /// <summary>
+    /// 调整时间缩放 默认值为60
+    /// </summary>
+    /// <param name="_v">缩放量 缺省为60</param>
+    public void SetTimeScale(float _v = 60f) {
+        timeScale = _v;
     }
 }

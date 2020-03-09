@@ -19,7 +19,7 @@ public class Poacher : MonoBehaviour
     public float timer_Aim;
 
     [Header("射击设定")]
-    [Range(1,20)]
+    [Range(1,50)]
     public float radius;
     public float shootDistanceScale = 1;
     public Vector2 offset;
@@ -40,6 +40,11 @@ public class Poacher : MonoBehaviour
     [Space]
     private LineRenderer lr;
     public GameObject bulletTrack;
+    public SpriteRenderer gun;
+
+    [Header("枪支音频")]
+    public AudioSource audio_Gunshot;
+    public AudioClip sound_Gunshot;
 
     void Start()
     {
@@ -117,6 +122,11 @@ public class Poacher : MonoBehaviour
 
                 viewDir = Vector2.Lerp(viewDir, targetDir, aimLerp);
                 viewDir.Normalize();
+
+                Vector3 gunAngle = gun.transform.eulerAngles;
+                gunAngle.z = Vector2.Angle(Vector2.right, viewDir);
+                gun.transform.eulerAngles = gunAngle;
+
                 viewDir *= radius;
 
                 timer_Aim -= Time.deltaTime;
@@ -131,6 +141,8 @@ public class Poacher : MonoBehaviour
     {
         Vector2 origin = transform.position + new Vector3(offset.x, offset.y, 0);
         RaycastHit2D hit = Physics2D.Raycast(origin, viewDir, radius * shootDistanceScale, birdLayer);
+
+        Play_Gunshot(); 
 
         if (hit)
         {
@@ -151,6 +163,10 @@ public class Poacher : MonoBehaviour
         lockTarget = false;
 
         timer_Aim = time_Aim;
+    }
+
+    void Play_Gunshot() {
+        audio_Gunshot.Play();
     }
 
     /// <summary>

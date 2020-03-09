@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,8 +32,19 @@ public class PlayerController : MonoBehaviour
     public float landPosCheckerWidth;
     public float landPosCheckerHeight;
 
+    [Header("其他鸟类生成区属性")]
+    public Vector2 spawnAreaSize;
+    public Vector2 spawnAreaOffset;
+
+    public bool spawnSuccessed;
+
+    [Space]
+    public float minSpawnTime;
+    public float maxSpawnTime;
+
     [Header("对象及组件")]
     public LeaderBird bird;
+    public GameObject keepFlyingBird;
 
     private void Awake()
     {
@@ -99,7 +111,7 @@ public class PlayerController : MonoBehaviour
     /// 着陆
     /// </summary>
     private void Land() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (!landed && Input.GetMouseButtonDown(0)) {
             Collider2D[] cols;
             cols = Physics2D.OverlapBoxAll(new Vector2(bird.transform.position.x + landPosCheckerOffset_X,landPosCheckerOffset_Y), new Vector2(landPosCheckerWidth, landPosCheckerHeight),0,landPosLayer);
             if (cols.Length > 0) {
@@ -157,19 +169,18 @@ public class PlayerController : MonoBehaviour
         bird = null;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (bird == null) return;
 
         Gizmos.color = new Color(1.0f, 0f,0f, 1.0f);
-        Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Top + border_Offset, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Top + border_Offset, 0f));
-        Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Bottom + border_Offset, 0.0f), new Vector3(bird.transform.position.x + border_Width, border_Bottom + border_Offset, 0f));
+        Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Top + border_Offset), new Vector3(bird.transform.position.x + border_Width, border_Top + border_Offset));
+        Gizmos.DrawLine(new Vector3(bird.transform.position.x - border_Width, border_Bottom + border_Offset), new Vector3(bird.transform.position.x + border_Width, border_Bottom + border_Offset));
 
         Gizmos.color = new Color(0.0f, 1f, 0f, 1.0f);
-        Gizmos.DrawSphere(new Vector3(bird.transform.position.x, birdHeight, 0), 0.2f);
+        Gizmos.DrawSphere(new Vector3(bird.transform.position.x, birdHeight), 0.2f);
 
         Gizmos.color = new Color(0.0f, 0f, 1f, 0.5f);
-        Gizmos.DrawCube(new Vector3(bird.transform.position.x + landPosCheckerOffset_X, landPosCheckerOffset_Y, 0), new Vector3(landPosCheckerWidth, landPosCheckerHeight,0));
-
+        Gizmos.DrawCube(new Vector3(bird.transform.position.x + landPosCheckerOffset_X, landPosCheckerOffset_Y), new Vector3(landPosCheckerWidth, landPosCheckerHeight));
     }
 }

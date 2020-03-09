@@ -20,8 +20,8 @@ TagManager:
   - TeamlessLayer
   - Bird
   - PostProcessing
-  - 
-  - 
+  - Sky
+  - KeepFlyingBird
   - 
   - 
   - 
@@ -46,6 +46,12 @@ TagManager:
   - name: Backgroud_Sky
     uniqueID: 3974131361
     locked: 0
+  - name: SunAndMoon
+    uniqueID: 2969601235
+    locked: 0
+  - name: BackgroundObject
+    uniqueID: 2820676721
+    locked: 0
   - name: FollowerBird
     uniqueID: 891001577
     locked: 0
@@ -58,6 +64,12 @@ TagManager:
   - name: CloseBackground
     uniqueID: 1918573511
     locked: 0
-  - name: terrain
+  - name: ThreadElement
+    uniqueID: 21924947
+    locked: 0
+  - name: Terrain
     uniqueID: 3995611811
+    locked: 0
+  - name: Lake
+    uniqueID: 411129287
     locked: 0

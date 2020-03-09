@@ -42,11 +42,11 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 9
-  spritePivot: {x: 0.53145105, y: 0.43021998}
-  spritePixelsToUnits: 450
-  spriteBorder: {x: 327, y: 278, z: 390, w: 237}
+  spritePivot: {x: 0.5159778, y: 0.5396476}
+  spritePixelsToUnits: 250
+  spriteBorder: {x: 327, y: 219, z: 390, w: 47}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
