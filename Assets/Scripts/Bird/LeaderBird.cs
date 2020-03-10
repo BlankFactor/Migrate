@@ -111,6 +111,7 @@ public class LeaderBird : BBird
     public void RemoveFollower(FollowerBird _fb) {
         birds.Remove(_fb);
         GameManager.instance.Set_Count_Followers(birds.Count);
+        GameManager.instance.AddDeadBird();
     }
 
     /// <summary>
@@ -211,8 +212,18 @@ public class LeaderBird : BBird
 
     protected override void BirdDead()
     {
-        base.BirdDead();
+        isFlying = false;
+        canTakeOff = false;
+
+        alive = false;
+
+        rid.bodyType = RigidbodyType2D.Dynamic;
+        rid.gravityScale = 0.8f;
+
+        // Destroy(gameObject, 5);
+
         GameManager.instance.leaderBirdDead();
+        CameraManager.instance.ClearFollowTarget();
         StartCoroutine(RemoveVignetee());
     }
 

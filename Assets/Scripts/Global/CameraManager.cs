@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
@@ -19,5 +20,11 @@ public class CameraManager : MonoBehaviour
 
     public void ConverToFarCamera() {
         nearCamera.SetActive(false);
+    }
+
+    public void ClearFollowTarget() {
+        nearCamera.GetComponent<CinemachineVirtualCamera>().Follow = null;
+        farCamera.GetComponent<CinemachineVirtualCamera>().Follow = null;
+        ConverToFarCamera();
     }
 }

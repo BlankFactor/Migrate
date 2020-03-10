@@ -200,6 +200,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   timer_ReflashClusterPos: 0
+  tired: 0
+  chaseable: 1
+  randomSpeed_Tired: 1
+  offset_Speed_Tired: 1
+  speed_Tired: 2
+  randomOffset: 1
+  threadholdOffset: 5
+  threadhold_Tired: 30
   inPosition: 0
   inBorder: 0
   reflectionTime: 1

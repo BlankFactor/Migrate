@@ -41,6 +41,7 @@ public class Poacher : MonoBehaviour
     private LineRenderer lr;
     public GameObject bulletTrack;
     public SpriteRenderer gun;
+    public GameObject muzzleLight;
 
     [Header("枪支音频")]
     public AudioSource audio_Gunshot;
@@ -142,7 +143,11 @@ public class Poacher : MonoBehaviour
         Vector2 origin = transform.position + new Vector3(offset.x, offset.y, 0);
         RaycastHit2D hit = Physics2D.Raycast(origin, viewDir, radius * shootDistanceScale, birdLayer);
 
-        Play_Gunshot(); 
+        // 枪声
+        Play_Gunshot();
+
+        // 枪口光
+        StartCoroutine("Display_MuzzleLight");
 
         if (hit)
         {
@@ -167,6 +172,12 @@ public class Poacher : MonoBehaviour
 
     void Play_Gunshot() {
         audio_Gunshot.Play();
+    }
+
+    IEnumerator Display_MuzzleLight() {
+        muzzleLight.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        muzzleLight.SetActive(false);
     }
 
     /// <summary>

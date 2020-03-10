@@ -136,6 +136,7 @@ public class BBird : MonoBehaviour
         isLanding = false;
         canTakeOff = false;
 
+        SetSpeedScale();
         lpd = null;
         SetRestoreEnergy(false);
         SetRestoreHP(false);
@@ -244,7 +245,7 @@ public class BBird : MonoBehaviour
         SetSpeedScale();
     }
 
-    private void ChangeVelocity(Vector2 _vel) {
+    protected void ChangeVelocity(Vector2 _vel) {
         rid.velocity = _vel;
         cur_Speed = _vel.x;
     }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SkyFollow : MonoBehaviour
 {
-    public Transform leaderBird;
+    public Transform cam;
     // Update is called once per frame
     void Update()
     {
-        Vector2 v = leaderBird.position;
+        Vector2 v = cam.position;
         v.y = transform.position.y;
         transform.position = v;
     }

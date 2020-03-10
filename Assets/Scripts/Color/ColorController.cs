@@ -8,6 +8,7 @@ public class ColorController : MonoBehaviour
 
     private List<ColorSetter> colorSetters = new List<ColorSetter>();
     private List<LightColorSetter> lightSetters = new List<LightColorSetter>();
+    private List<Firefly> fireflySetters = new List<Firefly>();
 
     private void Awake()
     {
@@ -24,6 +25,8 @@ public class ColorController : MonoBehaviour
             v.SetColor(_v);
         foreach (var v in lightSetters)
             v.SetColor(_v);
+        foreach (var v in fireflySetters)
+            v.SetColor(_v);
     }
 
     public void AddColorSetter(ColorSetter _cs) {
@@ -31,5 +34,13 @@ public class ColorController : MonoBehaviour
     }
     public void AddLightColorSetter(LightColorSetter _lcs) {
         lightSetters.Add(_lcs);
+    }
+    public void AddFireFly(Firefly _ff) {
+        fireflySetters.Add(_ff);
+    }
+    public void RemoveFireFly(Firefly _ff)
+    {
+        fireflySetters.Remove(_ff);
+        Destroy(_ff.gameObject);
     }
 }

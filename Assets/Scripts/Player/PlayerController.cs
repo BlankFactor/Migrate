@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gameEnd) return;
+
         if (bird == null) return;
 
         if (!landed)

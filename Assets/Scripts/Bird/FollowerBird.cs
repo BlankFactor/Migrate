@@ -11,6 +11,19 @@ public class FollowerBird : BBird
     [Space]
     public float timer_ReflashClusterPos;
 
+    [Header("劳累反应设置")]
+    public bool tired = false;
+    public bool chaseable = true;
+    [Space]
+    public bool randomSpeed_Tired = false;
+    public float offset_Speed_Tired = 0;
+    public float speed_Tired = 2;
+    [Space]
+    public bool randomOffset = false;
+    public float threadholdOffset = 0;
+    public float threadhold_Tired = 30;
+
+    [Space]
     public bool inPosition;
     public bool inBorder;
 
@@ -33,6 +46,13 @@ public class FollowerBird : BBird
     public override void Start()
     {
         base.Start();
+
+        if (randomOffset) {
+            threadhold_Tired += Random.Range(-threadholdOffset, threadholdOffset);
+        }
+        if (randomSpeed_Tired) {
+            speed_Tired += Random.Range(-offset_Speed_Tired, offset_Speed_Tired);
+        }
     }
 
     public override void Update()
@@ -43,11 +63,50 @@ public class FollowerBird : BBird
         CheckInPosition();
         CalibratePos();
         ReflashClusterPos();
+        CheckIfTired();
     }
+
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    /// <summary>
+    /// 通过检测当前体力检测鸟是否劳累 真则减小speedScale
+    /// </summary>
+    void CheckIfTired() {
+        if (!isFlying) return;
+
+        if (!tired)
+        {
+            if (cur_Energy <= threadhold_Tired)
+            {
+                tired = true;
+                StartCoroutine(SetChaseable());
+            }
+        }
+        else {
+            if (!chaseable)
+            {
+                Vector2 vel = rid.velocity;
+                vel.x = Mathf.Clamp(vel.x, 0, speed_Tired);
+                ChangeVelocity(vel);
+            }
+            else if (chaseable && inPosition) {
+                StartCoroutine(SetChaseable());
+            }
+
+            if (cur_Energy > threadhold_Tired) {
+                tired = false;
+            }
+        }
+    }
+
+    IEnumerator SetChaseable() {
+        chaseable = false;
+        yield return new WaitForSeconds(4);
+        chaseable = true;
     }
 
     /// <summary>

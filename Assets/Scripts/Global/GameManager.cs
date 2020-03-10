@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
 
     [Header("当前游戏状态")]
     public bool gameStart;
+    public bool gameEnd;
     public bool leaderAlive;
 
     [Space]
-    public float cur_Count_Followers;
+    public float cur_Count_Followers = 0;
+    public float cur_Count_DeadBird = 0;
 
     void Awake()
     {
@@ -30,9 +32,14 @@ public class GameManager : MonoBehaviour
     {
         PlayerController.instance.ClearBird();
         leaderAlive = false;
+
+        gameEnd = true;
     }
 
     public void Set_Count_Followers(int _v) {
         cur_Count_Followers = _v;
+    }
+    public void AddDeadBird() {
+        cur_Count_DeadBird++;
     }
 }
