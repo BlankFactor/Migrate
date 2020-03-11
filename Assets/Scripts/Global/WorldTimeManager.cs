@@ -41,15 +41,15 @@ public class WorldTimeManager : MonoBehaviour
         if (stop) return;
 
         RecordTime();
-        ReflashColor();
+        ReflashTime();
     }
 
     /// <summary>
     /// 更新光源颜色及其他shader颜色
     /// </summary>
-    private void ReflashColor() {
+    private void ReflashTime() {
         ColorController.instance.SetColor(time);
-
+        VolumeController.instance.SetWeight(time);
     }
 
     private void RecordTime() {

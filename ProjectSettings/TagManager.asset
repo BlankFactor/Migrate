@@ -52,14 +52,14 @@ TagManager:
   - name: BackgroundObject
     uniqueID: 2820676721
     locked: 0
+  - name: FarBackground
+    uniqueID: 1896937877
+    locked: 0
   - name: FollowerBird
     uniqueID: 891001577
     locked: 0
   - name: LeaderBird
     uniqueID: 4124430529
-    locked: 0
-  - name: FarBackground
-    uniqueID: 1896937877
     locked: 0
   - name: CloseBackground
     uniqueID: 1918573511
@@ -78,4 +78,7 @@ TagManager:
     locked: 0
   - name: Lake
     uniqueID: 411129287
+    locked: 0
+  - name: Fog
+    uniqueID: 2019694209
     locked: 0
