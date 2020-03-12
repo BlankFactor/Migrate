@@ -186,7 +186,7 @@ MonoBehaviour:
   speedScale: 1
   acceleration: 3
   healthPoint: 100
-  climbSpeed: 2.5
+  climbSpeed: 3
   landSpeed: 4
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5

@@ -38,9 +38,8 @@ public class ColorController : MonoBehaviour
     public void AddFireFly(Firefly _ff) {
         fireflySetters.Add(_ff);
     }
-    public void RemoveFireFly(Firefly _ff)
+    public void ClearFireFly()
     {
-        fireflySetters.Remove(_ff);
-        Destroy(_ff.gameObject);
+        fireflySetters.Clear();
     }
 }

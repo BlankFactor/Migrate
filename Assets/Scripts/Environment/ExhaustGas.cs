@@ -21,9 +21,9 @@ public class ExhaustGas : MonoBehaviour
     public float timer_Start;
 
     [Header("触发区设定")]
-    [Range(0.1f,3)]
+    [Range(0.1f,15)]
     public float width;
-    [Range(0, 20)]
+    [Range(0, 30)]
     public float height;
     [Range(-1,1)]
     public float offset_X = 0;
