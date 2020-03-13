@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public float cur_Count_Followers = 0;
     public float cur_Count_DeadBird = 0;
 
+    [Header("对象")]
+    public AudioListener audioListener;
+
     void Awake()
     {
         instance = this;
@@ -22,10 +25,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame() {
+        gameStart = true;
 
+        WorldTimeManager.instance.SetStop(false);
+        GlobalAudioPlayer.instance.ChangeToBirdListener(true);
+        GlobalAudioPlayer.instance.Play_Bgm();
     }
     public void EndGame() {
-
+        gameEnd = true;
     }
 
     public void leaderBirdDead()
@@ -33,7 +40,7 @@ public class GameManager : MonoBehaviour
         PlayerController.instance.ClearBird();
         leaderAlive = false;
 
-        gameEnd = true;
+        EndGame();
     }
 
     public void Set_Count_Followers(int _v) {

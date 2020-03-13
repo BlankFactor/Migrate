@@ -5,7 +5,11 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class WorldTimeManager : MonoBehaviour
 {
-    public WorldTimeManager instance = null;
+    public static WorldTimeManager instance;
+
+    [Header("初始设定")]
+    [Range(0,1)]
+    public float initialTime = 0;
 
     [Header("当前时间状态")]
     [Range(0, 1)]
@@ -20,7 +24,7 @@ public class WorldTimeManager : MonoBehaviour
     public float hour;
 
     [Space]
-    public bool stop = false;
+    public bool stop = true;
 
     [Header("时间设定")]
     public float timeScale = 60;
@@ -33,15 +37,18 @@ public class WorldTimeManager : MonoBehaviour
     private void Start()
     {
         days = 0;
-        sec = 1440;
+        sec = 1440 * (1 - initialTime);
+        time = (1440f - sec) / 1440f;
     }
 
     private void Update()
     {
-        if (stop) return;
-
         RecordTime();
         ReflashTime();
+    }
+
+    public void SetStop(bool _b) {
+        stop = _b;
     }
 
     /// <summary>
@@ -53,6 +60,8 @@ public class WorldTimeManager : MonoBehaviour
     }
 
     private void RecordTime() {
+        if (stop) return;
+
         if (sec < 0)
         {
             sec = 1440.0f;

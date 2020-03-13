@@ -19,6 +19,10 @@ public class GlobalAudioPlayer : MonoBehaviour
     [Header("音频片")]
     public AudioClip sound_Bgm;
 
+    [Header("接受对象")]
+    public AudioListener globalListener;
+    public AudioListener birdListener;
+
     private void Awake()
     {
         instance = this;
@@ -31,6 +35,11 @@ public class GlobalAudioPlayer : MonoBehaviour
 
     public void StartBgmFadeOut() {
         StartCoroutine(BgmFadeOut());
+    }
+
+    public void ChangeToBirdListener(bool _b) {
+        birdListener.enabled = _b;
+        globalListener.enabled = !_b;
     }
 
     IEnumerator BgmFadeOut() {

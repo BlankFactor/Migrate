@@ -51,7 +51,8 @@ public class LeaderBird : BBird
     public override void TakeOff()
     {
         SearchTeamlessBird();
-
+        if (lpd != null)
+            Destroy(lpd.gameObject, 2f);
         base.TakeOff();
 
         foreach (var v in birds) {
@@ -221,6 +222,8 @@ public class LeaderBird : BBird
         rid.gravityScale = 0.8f;
 
         // Destroy(gameObject, 5);
+
+        GlobalAudioPlayer.instance.ChangeToBirdListener(false);
 
         GameManager.instance.leaderBirdDead();
         CameraManager.instance.ClearFollowTarget();

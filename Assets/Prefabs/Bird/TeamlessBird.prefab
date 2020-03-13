@@ -191,8 +191,8 @@ MonoBehaviour:
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
   dec_HelathPoint: 0
-  inc_Energy: 2
-  inc_HealthPoint: 0
+  inc_Energy: 5
+  inc_HealthPoint: 3
   inc_Speed: 3
   rid: {fileID: 0}
   clusterPos: {x: 0, y: 0}

@@ -53,13 +53,19 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        //HideCursor();
+
         landed = true;
         ResetBirdHeight();
     }
 
+    void HideCursor() {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Update()
     {
-        if (GameManager.instance.gameEnd) return;
+        if (GameManager.instance.gameEnd || !GameManager.instance.gameStart) return;
 
         if (bird == null) return;
 
