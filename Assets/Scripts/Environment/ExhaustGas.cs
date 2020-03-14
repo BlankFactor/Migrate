@@ -12,6 +12,7 @@ public class ExhaustGas : MonoBehaviour
 
     [Space]
     public bool forever;
+    public bool trig = true;
 
     [Space]
     public bool enable = true;
@@ -199,12 +200,16 @@ public class ExhaustGas : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!trig) return;
+
         if (collision.tag.Contains("Bird")) {
             collision.SendMessage("SetDec_HealthPoint", dec_HealthPoint);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!trig) return;
+
         if (collision.tag.Contains("Bird"))
         {
             collision.SendMessage("SetDec_HealthPoint", -dec_HealthPoint);

@@ -73,6 +73,9 @@ TagManager:
   - name: LakeSurface
     uniqueID: 459047217
     locked: 0
+  - name: UnderWater
+    uniqueID: 1460715711
+    locked: 0
   - name: Terrain
     uniqueID: 3995611811
     locked: 0

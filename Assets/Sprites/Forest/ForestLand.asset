@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForestLand
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -63
+  - m_Start: -60
     m_End: 63
     m_Order: 1
     m_Sprites:

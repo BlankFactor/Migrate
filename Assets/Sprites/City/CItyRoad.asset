@@ -29,7 +29,7 @@ MonoBehaviour:
     m_End: 135
     m_Order: 1
     m_Sprites: []
-  m_FillTexture: {fileID: 2800000, guid: 112a642e3c914164e950f86b52af2b70, type: 3}
+  m_FillTexture: {fileID: 2800000, guid: 751032030be424342b1c47e08b979c21, type: 3}
   m_CornerSprites:
   - m_CornerType: 0
     m_Sprites:
@@ -55,5 +55,5 @@ MonoBehaviour:
   - m_CornerType: 7
     m_Sprites:
     - {fileID: 0}
-  m_FillOffset: 0
+  m_FillOffset: -0.5
   m_UseSpriteBorders: 1

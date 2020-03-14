@@ -17,7 +17,7 @@ public class GUIController : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
+       StartGame();
     }
 
     /// <summary>
