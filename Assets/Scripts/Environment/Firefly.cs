@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class Firefly : MonoBehaviour
+public class Firefly : MonoBehaviour,IObserver
 {
     [Header("浮动设置")]
     public bool random;
@@ -25,7 +25,7 @@ public class Firefly : MonoBehaviour
 
     void Start()
     {
-        ColorController.instance.AddFireFly(this);
+        ColorController.instance.AddObserver(this);
 
         origin = transform.position;
         sprite = GetComponent<SpriteRenderer>();
@@ -49,15 +49,6 @@ public class Firefly : MonoBehaviour
         Float();
     }
 
-    public void SetColor(float _v) {
-        float a = 1 -color.Evaluate(_v).a;
-        light2d.intensity = a * intensity;
-
-        Color c = sprite.color;
-        c.a = a;
-        sprite.color = c;
-    }
-
     void Float() {
         Vector2 v2 = origin;
         tick += Time.deltaTime;
@@ -65,5 +56,24 @@ public class Firefly : MonoBehaviour
         v2.y = origin.y + margin.y * Mathf.Cos(tick * frequency.y);
 
         transform.position = v2;
+    }
+
+    public void Respond(float _v)
+    {
+        float a = 1 - color.Evaluate(_v).a;
+        light2d.intensity = a * intensity;
+
+        Color c = sprite.color;
+        c.a = a;
+        sprite.color = c;
+    }
+
+    public void DestoryObject() {
+        Destroy(gameObject);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

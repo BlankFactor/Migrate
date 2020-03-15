@@ -13,7 +13,7 @@ public class SceneSpawner_Forest : SceneSpawner {
             foreach (var i in sceneObject)
                 Destroy(i);
 
-            ColorController.instance.ClearFireFly();
+            ColorController.instance.ClearFirefly();
         }
     }
 }

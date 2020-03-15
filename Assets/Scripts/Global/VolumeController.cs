@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class VolumeController : MonoBehaviour
+public class VolumeController : MonoBehaviour,ISubject
 {
     public static VolumeController instance;
 
@@ -12,24 +12,11 @@ public class VolumeController : MonoBehaviour
 
     [Header("Volume")]
     private List<VolumeSetter> volumes = new List<VolumeSetter>();
+    private List<IObserver> observers = new List<IObserver>();
 
     private void Awake()
     {
         instance = this;
-    }
-
-    public void SetWeight(float _t ) {
-        if (stop) return;
-
-        if (readyToStop && ((_t <= 0.1f) || (_t >= 0.7f)))
-        {
-            readyToStop = false;
-            stop = true;
-            return;
-        }
-
-        foreach (var v in volumes)
-            v.SetWeight(_t);
     }
 
     // 设置可暂停 等待暂停时机
@@ -48,5 +35,30 @@ public class VolumeController : MonoBehaviour
 
     public void RemoveVolume(VolumeSetter _v) {
         volumes.Remove(_v);
+    }
+
+    public void AddObserver(IObserver _ob)
+    {
+        observers.Add(_ob);
+    }
+
+    public void RemoveObserver(IObserver _ob)
+    {
+        observers.Remove(_ob);
+    }
+
+    public void NotifyObserver(float _v)
+    {
+        if (stop) return;
+
+        if (readyToStop && ((_v <= 0.1f) || (_v >= 0.7f)))
+        {
+            readyToStop = false;
+            stop = true;
+            return;
+        }
+
+        foreach (var v in volumes)
+            v.Respond(_v);
     }
 }

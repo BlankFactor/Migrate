@@ -2,44 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorController : MonoBehaviour
+public class ColorController : MonoBehaviour,ISubject
 {
     public static ColorController instance;
 
-    private List<ColorSetter> colorSetters = new List<ColorSetter>();
-    private List<LightColorSetter> lightSetters = new List<LightColorSetter>();
-    private List<Firefly> fireflySetters = new List<Firefly>();
+    private List<IObserver> observers = new List<IObserver>();
 
     private void Awake()
     {
         instance = this;
     }
 
-    void Start()
+    public void AddObserver(IObserver _ob)
     {
-        
+        observers.Add(_ob);
     }
 
-    public void SetColor(float _v) {
-        foreach (var v in colorSetters)
-            v.SetColor(_v);
-        foreach (var v in lightSetters)
-            v.SetColor(_v);
-        foreach (var v in fireflySetters)
-            v.SetColor(_v);
+    public void RemoveObserver(IObserver _ob)
+    {
+        observers.Remove(_ob);
     }
 
-    public void AddColorSetter(ColorSetter _cs) {
-        colorSetters.Add(_cs);
-    }
-    public void AddLightColorSetter(LightColorSetter _lcs) {
-        lightSetters.Add(_lcs);
-    }
-    public void AddFireFly(Firefly _ff) {
-        fireflySetters.Add(_ff);
-    }
-    public void ClearFireFly()
+    public void NotifyObserver(float _v)
     {
-        fireflySetters.Clear();
+        foreach (var v in observers)
+            v.Respond(_v);
+    }
+
+    public void ClearFirefly() {
+        List<IObserver> temp = new List<IObserver>();
+
+        foreach (var v in observers) {
+            if (v.GetGameObject().tag.Equals("Firefly")) {
+                temp.Add(v);
+            }
+        }
+
+        foreach (var v in temp)
+            RemoveObserver(v);
+
+        foreach (var v in temp)
+            Destroy(v.GetGameObject());
     }
 }

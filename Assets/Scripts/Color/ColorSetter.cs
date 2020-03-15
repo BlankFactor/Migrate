@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorSetter : MonoBehaviour
+public class ColorSetter : MonoBehaviour,IObserver
 {
     public Material material;
     public Gradient color;
@@ -10,10 +10,16 @@ public class ColorSetter : MonoBehaviour
 
     public virtual void Start()
     {
-        ColorController.instance.AddColorSetter(this);
+        ColorController.instance.AddObserver(this);
     }
 
-    public void SetColor(float _v) {
+    public void Respond(float _v)
+    {
         material.SetColor(colorName, color.Evaluate(_v));
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

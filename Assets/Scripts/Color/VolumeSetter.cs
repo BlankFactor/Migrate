@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class VolumeSetter : MonoBehaviour
+public class VolumeSetter : MonoBehaviour,IObserver
 {
     public Volume volume;
     public Gradient weightGradient;
 
     void Start()
     {
-        VolumeController.instance.AddVolume(this);
+        VolumeController.instance.AddObserver(this);
     }
 
-    public void SetWeight(float _t) {
-        Color c = weightGradient.Evaluate(_t);
+    public void Respond(float _v)
+    {
+        Color c = weightGradient.Evaluate(_v);
         volume.weight = c.a;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

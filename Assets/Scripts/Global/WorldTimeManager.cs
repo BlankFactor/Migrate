@@ -55,8 +55,8 @@ public class WorldTimeManager : MonoBehaviour
     /// 更新光源颜色及其他shader颜色
     /// </summary>
     private void ReflashTime() {
-        ColorController.instance.SetColor(time);
-        VolumeController.instance.SetWeight(time);
+        ColorController.instance.NotifyObserver(time);
+        VolumeController.instance.NotifyObserver(time);
     }
 
     private void RecordTime() {
