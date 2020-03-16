@@ -11,7 +11,6 @@ public class VolumeController : MonoBehaviour,ISubject
     public bool readyToStop;
 
     [Header("Volume")]
-    private List<VolumeSetter> volumes = new List<VolumeSetter>();
     private List<IObserver> observers = new List<IObserver>();
 
     private void Awake()
@@ -27,14 +26,6 @@ public class VolumeController : MonoBehaviour,ISubject
         }
 
         readyToStop = _v;
-    }
-
-    public void AddVolume(VolumeSetter _v) {
-        volumes.Add(_v);
-    }
-
-    public void RemoveVolume(VolumeSetter _v) {
-        volumes.Remove(_v);
     }
 
     public void AddObserver(IObserver _ob)
@@ -58,7 +49,7 @@ public class VolumeController : MonoBehaviour,ISubject
             return;
         }
 
-        foreach (var v in volumes)
+        foreach (var v in observers)
             v.Respond(_v);
     }
 }
