@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+
 public class LightColorSetter : MonoBehaviour,IObserver
 {
     public Light2D light_;
