@@ -58,14 +58,20 @@ public class LeaderBird : BBird
         foreach (var v in birds) {
             v.Command_TakeOff();
         }
+
+        // 唤起UI
+        GUIController.instance.SetMouseClickLeft_FadeIn(false,false);
     }
 
     /// <summary>
     /// 寻找附近的无团队鸟 并将其加入队伍行列
     /// </summary>
     private void SearchTeamlessBird() {
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 5.0f, teamlessBirdLayer);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 10.0f, teamlessBirdLayer);
         if (cols.Length > 0) {
+            GUIController.instance.AddString("更多的同伴加入到了队伍当中");
+            GlobalAudioPlayer.instance.Play_Bell();
+
             foreach (var v in cols) {
                 v.SendMessage("SetLeader", this);
             }
@@ -94,6 +100,29 @@ public class LeaderBird : BBird
         {
             v.SetSpeedUp(_v);
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    public override void Land()
+    {
+        if (isLanding)
+        {
+            if (transform.position.Equals(landPos))
+            {
+                landed = true;
+                isLanding = false;
+                canTakeOff = true;
+
+                SetSpeedScale();
+                lpd.Action(this);
+
+                // 唤起UI
+                GUIController.instance.SetMouseClickLeft_FadeIn(true,false);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, landPos, landSpeed * Time.fixedDeltaTime);
+            }
         }
     }
 

@@ -18,6 +18,7 @@ public class GlobalAudioPlayer : MonoBehaviour
 
     [Header("音频片")]
     public AudioClip sound_Bgm;
+    public AudioClip sound_Bell;
 
     [Header("接受对象")]
     public AudioListener globalListener;
@@ -31,6 +32,11 @@ public class GlobalAudioPlayer : MonoBehaviour
     public void Play_Bgm() {
         audio_Music.clip = sound_Bgm;
         audio_Music.Play();
+    }
+
+    public void Play_Bell() {
+        audio_Sound.clip = sound_Bell;
+        audio_Sound.Play();
     }
 
     public void StartBgmFadeOut() {

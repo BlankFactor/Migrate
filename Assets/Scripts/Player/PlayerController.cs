@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float birdHeight;
     public bool landed;
     public bool controllable;
+    public bool landable;
 
     [Header("基本属性")]
     public float heightPointSpeed;
@@ -63,7 +64,23 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void Update()
+    {
+        if (GameManager.instance.gameEnd || !GameManager.instance.gameStart) return;
+
+        if (bird == null) return;
+
+        if (!landed)
+        {
+            AccelerateBird();
+            Land();
+        }
+        else {
+            TakeOff();
+        }
+    }
+
+    void FixedUpdate()
     {
         if (GameManager.instance.gameEnd || !GameManager.instance.gameStart) return;
 
@@ -72,11 +89,9 @@ public class PlayerController : MonoBehaviour
         if (!landed)
         {
             BirdHeightControl();
-            AccelerateBird();
-            Land();
         }
         else {
-            TakeOff();
+           
         }
     }
 
@@ -119,14 +134,35 @@ public class PlayerController : MonoBehaviour
     /// 着陆
     /// </summary>
     private void Land() {
-        if (!landed && Input.GetMouseButtonDown(0)) {
+        if (!landed) {
             Collider2D[] cols;
             cols = Physics2D.OverlapBoxAll(new Vector2(bird.transform.position.x + landPosCheckerOffset_X,landPosCheckerOffset_Y), new Vector2(landPosCheckerWidth, landPosCheckerHeight),0,landPosLayer);
-            if (cols.Length > 0) {
-                bird.SetLanding(GetNearestLandPos(cols).GetComponent<LandPosData>());
-                landed = true;
-                CameraManager.instance.ConverToFarCamera();
+            if (cols.Length > 0)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    bird.SetLanding(GetNearestLandPos(cols).GetComponent<LandPosData>());
+                    landed = true;
+                    CameraManager.instance.ConverToFarCamera();
+
+                    GUIController.instance.SetMouseClickLeft_FadeIn(false,true);
+                    landable = false;
+                }
+
+                if (!landable && !landed)
+                {
+                    landable = true;
+                    GUIController.instance.SetMouseClickLeft_FadeIn(true, true);
+                }
             }
+            else {
+                if (landable)
+                {
+                    landable = false;
+                    GUIController.instance.SetMouseClickLeft_FadeIn(false, true);
+                }
+            }
+                
         }
     }
 

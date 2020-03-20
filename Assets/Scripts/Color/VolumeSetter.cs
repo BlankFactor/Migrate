@@ -17,7 +17,6 @@ public class VolumeSetter : MonoBehaviour,IObserver
     {
         Color c = weightGradient.Evaluate(_v);
         volume.weight = c.a;
-        Debug.Log(_v);
     }
 
     public GameObject GetGameObject()

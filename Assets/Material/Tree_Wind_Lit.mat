@@ -40,10 +40,10 @@ Material:
     - _EnableExternalAlpha: 0
     - _WindScale: 0.1
     - _WindSpeed: 2
-    - _WindStrength: 1
+    - _WindStrength: 3
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
-    - _WindDirection: {r: 2, g: 0, b: 0, a: 0}
+    - _WindDirection: {r: 1, g: 0, b: 0, a: 0}

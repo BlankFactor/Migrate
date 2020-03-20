@@ -10,16 +10,24 @@ public class CameraManager : MonoBehaviour
     public GameObject nearCamera;
     public GameObject farCamera;
 
+    private int priority;
+
     private void Awake()
     {
         instance = this;
     }
+
+    private void Start()
+    {
+        priority = farCamera.GetComponent<CinemachineVirtualCamera>().Priority;
+    }
+
     public void ConverToNearCamera() {
-        nearCamera.SetActive(true);
+        nearCamera.GetComponent<CinemachineVirtualCamera>().Priority = priority + 1;
     }
 
     public void ConverToFarCamera() {
-        nearCamera.SetActive(false);
+        nearCamera.GetComponent<CinemachineVirtualCamera>().Priority = priority - 1;
     }
 
     public void ClearFollowTarget() {
