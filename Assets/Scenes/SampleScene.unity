@@ -488,6 +488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &4243621 stripped
@@ -5771,6 +5776,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &148211127 stripped
@@ -5930,7 +5940,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 124
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -6870,7 +6880,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 105
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -10725,6 +10735,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &248381292 stripped
@@ -11958,7 +11973,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -12493,7 +12508,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 130
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -15283,6 +15298,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &349891520 stripped
@@ -17455,7 +17475,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 111
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -20395,7 +20415,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 124
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -21786,7 +21806,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 93
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -25498,6 +25518,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &584174552 stripped
@@ -29013,7 +29038,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 124
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -32696,6 +32721,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &758499238 stripped
@@ -34739,7 +34769,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 132
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -35824,7 +35854,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 102
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -36745,7 +36775,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 85
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -37135,7 +37165,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 110
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -37675,7 +37705,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 124
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -39722,6 +39752,11 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 5.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!1001 &912583682
@@ -40103,6 +40138,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &916597978 stripped
@@ -40261,7 +40301,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -42215,7 +42255,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 93
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -43834,7 +43874,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 124
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -45373,6 +45413,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeamlessBird (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -48253,7 +48298,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 93
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -48779,6 +48824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeamlessBird (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -49803,7 +49853,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 90
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -50110,6 +50160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeamlessBird (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -50523,6 +50578,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeamlessBird (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -55503,7 +55563,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 85
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -57280,6 +57340,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &1289510899 stripped
@@ -58432,7 +58497,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 124
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -61144,7 +61209,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 85
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -62825,7 +62890,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 111
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -65220,7 +65285,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 109
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -69968,7 +70033,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 102
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -72825,6 +72890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeamlessBird (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -76721,7 +76791,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 111
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -78100,6 +78170,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &1791123836 stripped
@@ -78841,7 +78916,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 103
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -83362,6 +83437,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &1903037603 stripped
@@ -84641,6 +84721,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &1923221918 stripped
@@ -85793,6 +85878,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &1954090867 stripped
@@ -86574,6 +86664,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &1977957102 stripped
@@ -86948,6 +87043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeamlessBird (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -88699,7 +88799,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 102
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -89310,7 +89410,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 132
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -89646,6 +89746,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeamlessBird (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -91762,6 +91867,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &2083188348 stripped
@@ -93209,7 +93319,7 @@ PrefabInstance:
     - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
         type: 3}
       propertyPath: energy
-      value: 132
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
@@ -94042,6 +94152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamlessBird (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040015997572372723, guid: 7767ed5d2ee1cbd48a7b9ef628166551,
+        type: 3}
+      propertyPath: energy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ed5d2ee1cbd48a7b9ef628166551, type: 3}
 --- !u!4 &2136927503 stripped
@@ -94823,7 +94938,7 @@ PrefabInstance:
     - target: {fileID: 7146502575537069915, guid: f8a43b13663037f4a841110b21d13b07,
         type: 3}
       propertyPath: healthPoint
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7146502575537069915, guid: f8a43b13663037f4a841110b21d13b07,
         type: 3}

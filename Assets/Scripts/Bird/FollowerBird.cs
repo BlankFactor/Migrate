@@ -83,6 +83,8 @@ public class FollowerBird : BBird
             if (cur_Energy <= threadhold_Tired)
             {
                 tired = true;
+
+                GUIController.instance.AddString("你的同伴需要休息");
                 StartCoroutine(SetChaseable());
             }
         }

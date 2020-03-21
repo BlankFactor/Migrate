@@ -15,7 +15,8 @@ public class TextDisplayer : MonoBehaviour
     public Text text;
 
     public void AddString(string _s) {
-        stringQueue.Enqueue(_s);
+        if(!stringQueue.Contains(_s))
+            stringQueue.Enqueue(_s);
 
         if(!enable)
             Display();

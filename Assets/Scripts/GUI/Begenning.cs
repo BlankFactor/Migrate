@@ -21,7 +21,7 @@ public class Begenning : MonoBehaviour
     private void Update()
     {
         if (listenning) {
-            HandleInput();
+            //HandleInput();
         }
     }
 
