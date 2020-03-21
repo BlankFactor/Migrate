@@ -52,7 +52,7 @@ public class LeaderBird : BBird
     {
         SearchTeamlessBird();
         if (lpd != null)
-            Destroy(lpd.gameObject, 2f);
+            Destroy(lpd.gameObject);
         base.TakeOff();
 
         foreach (var v in birds) {

@@ -19,6 +19,9 @@ public class BBird : MonoBehaviour
     public bool landed = true;
     public bool canTakeOff = true;
 
+    [Space]
+    public bool energy_Empty;
+
     public bool restoreEnergy;
     public bool restoreHP;
 
@@ -154,7 +157,10 @@ public class BBird : MonoBehaviour
         {
             if (cur_Energy <= 0)
             {
-                BirdDead();
+                //BirdDead(); 体力为空时消耗生命值而非立即死亡
+
+                if(!energy_Empty)
+                    energy_Empty = true;
             }
             else
             {
@@ -165,15 +171,22 @@ public class BBird : MonoBehaviour
             }
         }
         else if (landed && restoreEnergy) {
+            if (energy_Empty) {
+                energy_Empty = false;
+            }
+
             cur_Energy += Time.deltaTime * inc_Energy;
-            cur_Energy = Mathf.Clamp(cur_Energy, 0, energy);
+            cur_Energy = Mathf.Clamp(cur_Energy, 0, cur_healthPoint);
+            //cur_Energy = Mathf.Clamp(cur_Energy, 0, energy);
         }
     }
     /// <summary>
     /// 检测生命值
     /// </summary>
     private void CheckHealthPoint() {
-        cur_healthPoint -= dec_HelathPoint * Time.deltaTime;
+        // 体力为空时消耗生命值
+        if(energy_Empty && isFlying)
+            cur_healthPoint -= dec_HelathPoint * Time.deltaTime;
 
         if (restoreHP) {
             cur_healthPoint += inc_HealthPoint * Time.deltaTime;
