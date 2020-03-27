@@ -26,7 +26,7 @@ public class GUIController : MonoBehaviour
 
     private void Start()
     {
-       //StartGame();
+       StartGame();
     }
 
     public void SetMouseClickLeft_FadeIn(bool value,bool _land) {

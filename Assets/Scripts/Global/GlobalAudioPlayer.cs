@@ -50,7 +50,7 @@ public class GlobalAudioPlayer : MonoBehaviour
 
     IEnumerator BgmFadeOut() {
         while (audio_Music.volume != 0) {
-            float v = audio_Music.volume - (Time.deltaTime * speedScale);
+            float v = audio_Music.volume - (Time.fixedDeltaTime * speedScale);
             v = Mathf.Clamp(v, 0, max_BgmVolume);
 
             audio_Music.volume = v;
