@@ -61,6 +61,9 @@ public class LeaderBird : BBird
 
         // 唤起UI
         GUIController.instance.SetMouseClickLeft_FadeIn(false,false);
+
+        // 开始记录时间
+        WorldTimeManager.instance.SetStop(false);
     }
 
     /// <summary>
@@ -111,19 +114,31 @@ public class LeaderBird : BBird
             {
                 landed = true;
                 isLanding = false;
-                canTakeOff = true;
 
                 SetSpeedScale();
-                lpd.Action(this);
 
+                // 受事件控制
                 // 唤起UI
-                GUIController.instance.SetMouseClickLeft_FadeIn(true,false);
+                //lpd.Action(this);
+                //canTakeOff = true;
+                //GUIController.instance.SetMouseClickLeft_FadeIn(true,false);
+
+                // 改版后
+                lpd.DeployTimeline();
+                // *********
+
+                GUIController.instance.Display_Panel_Clock();
             }
             else
             {
                 transform.position = Vector2.MoveTowards(transform.position, landPos, landSpeed * Time.fixedDeltaTime);
             }
         }
+    }
+    // 可起飞
+    public void GrantToTakeOff() {
+        canTakeOff = true;
+        GUIController.instance.SetMouseClickLeft_FadeIn(true, false);
     }
 
     public override void SetLanding(LandPosData _lp)

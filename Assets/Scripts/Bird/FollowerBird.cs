@@ -182,6 +182,16 @@ public class FollowerBird : BBird
         SetLanding(_lp);
         Invoke("GrandLand", time);
     }
+    public override void SetLanding(LandPosData _lp)
+    {
+        landPos = _lp.GetLandPos();
+        lpd = _lp;
+    }
+    private void GrandLand()
+    {
+        isFlying = false;
+        isLanding = true;
+    }
 
     /// <summary>
     /// 设置领导者 并修改自己Tag值
@@ -194,17 +204,6 @@ public class FollowerBird : BBird
         transform.tag = "FollowerBird";
         transform.name = "Follower";
         gameObject.layer = 11;
-    }
-
-    public override void SetLanding(LandPosData _lp)
-    {
-        landPos = _lp.GetLandPos();
-        lpd = _lp;
-    }
-    private void GrandLand()
-    {
-        isFlying = false;
-        isLanding = true;
     }
 
     protected override void BirdDead()

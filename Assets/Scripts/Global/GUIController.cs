@@ -14,6 +14,7 @@ public class GUIController : MonoBehaviour
     [Header("面板对象")]
     public Animator animator_MouseClickLeft;
     public TextDisplayer textDisplayer;
+    public Clock panel_Clock;
 
     [Header("其他对象")]
     public Text text;
@@ -29,7 +30,9 @@ public class GUIController : MonoBehaviour
        StartGame();
     }
 
-    public void SetMouseClickLeft_FadeIn(bool value,bool _land) {
+    #region Operation
+    public void SetMouseClickLeft_FadeIn(bool value, bool _land)
+    {
         if (value)
         {
             if (_land)
@@ -38,12 +41,29 @@ public class GUIController : MonoBehaviour
                 text.text = text_TakeOff;
         }
 
-       animator_MouseClickLeft.SetBool("FadeIn",value);
+        animator_MouseClickLeft.SetBool("FadeIn", value);
     }
+    #endregion
 
-    public void AddString(string _s) {
+    #region TextDisplayer
+    public void AddString(string _s)
+    {
         textDisplayer.AddString(_s);
     }
+    #endregion
+
+
+    #region Clock
+
+    public void Display_Panel_Clock()
+    {
+        panel_Clock.gameObject.SetActive(true);
+    }
+
+    public void SetTimeline(object _timeline) {
+        panel_Clock.SetTimeline(_timeline);
+    }
+    #endregion
 
     /// <summary>
     /// 通知GameManager游戏正式开始

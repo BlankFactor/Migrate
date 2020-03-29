@@ -59,6 +59,10 @@ public class WorldTimeManager : MonoBehaviour
         VolumeController.instance.NotifyObserver(time);
     }
 
+    public float DeltaTime() {
+        return Time.deltaTime * timeScale;
+    }
+
     private void RecordTime() {
         if (stop) return;
 
@@ -68,7 +72,7 @@ public class WorldTimeManager : MonoBehaviour
             days++;
         }
         else {
-            sec -= Time.deltaTime * timeScale;
+            sec -= DeltaTime();
         }
 
         time = (1440f - sec) / 1440f;
