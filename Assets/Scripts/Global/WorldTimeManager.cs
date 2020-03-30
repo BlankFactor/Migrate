@@ -28,6 +28,7 @@ public class WorldTimeManager : MonoBehaviour
 
     [Header("时间设定")]
     public float timeScale = 60;
+    public float speedScale = 1;
 
     private void Awake()
     {
@@ -60,7 +61,7 @@ public class WorldTimeManager : MonoBehaviour
     }
 
     public float DeltaTime() {
-        return Time.deltaTime * timeScale;
+        return Time.deltaTime * timeScale * speedScale;
     }
 
     private void RecordTime() {
@@ -85,5 +86,9 @@ public class WorldTimeManager : MonoBehaviour
     /// <param name="_v">缩放量 缺省为60</param>
     public void SetTimeScale(float _v = 60f) {
         timeScale = _v;
+    }
+
+    public void SetSpeedScale(float _v) {
+        speedScale = _v;
     }
 }

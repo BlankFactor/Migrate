@@ -9,10 +9,13 @@ public class Clock : MonoBehaviour
 
     [Header("时钟状态")]
     public float cur_Time;
-    [SerializeField]
     private float target_Time;
-    [SerializeField]
+    [Space]
+    public float speedScaleWhenClocking = 1;
+
     private bool stop = true;
+
+    private bool clickable;
 
     public List<BEvent> cur_EventList = new List<BEvent>();
 
@@ -22,6 +25,8 @@ public class Clock : MonoBehaviour
     [Header("对象 ")]
     public LeaderBird leaderBird;
 
+
+    public Sprite ss;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -29,36 +34,58 @@ public class Clock : MonoBehaviour
 
     private void Update()
     {
-        if (stop) return;
-        
-        cur_Time += WorldTimeManager.instance.DeltaTime() / 1440f;
-        cur_Time = Mathf.Clamp(cur_Time, 0, target_Time);
+        // 监听输入
+        if (clickable) {
+            if (Input.GetMouseButtonDown(0)) {
+                clickable = false;
 
-        // 检查事件是否被触发
-        foreach (var v in timeline) {
-            if (cur_Time >= v.Value) {
-                check = true;
-                cur_Event = v.Key;
-                break;
+                WorldTimeManager.instance.SetStop(false);
+                stop = false;
+
+                GUIController.instance.Disable_Panel_EventDesc();
             }
         }
-        // 触发事件
-        if (check) {
-            check = false;
 
-            timeline.Remove(cur_Event);
+        if (stop) return;
+        else
+        {
+            cur_Time += WorldTimeManager.instance.DeltaTime() / 1440f;
+            cur_Time = Mathf.Clamp(cur_Time, 0, target_Time);
 
-            BEvent ev = EventSpawner.GetEvent(cur_Event);
-            ev.Execute(leaderBird);
-            cur_EventList.Add(ev);
+            // 检查事件是否被触发
+            foreach (var v in timeline)
+            {
+                if (cur_Time >= v.Value)
+                {
+                    check = true;
+                    cur_Event = v.Key;
+                    break;
+                }
+            }
+            // 触发事件
+            if (check)
+            {
+                check = false;
+                clickable = true;
 
-            // WorldTimeManager.instance.SetStop(true);
+                timeline.Remove(cur_Event);
 
-            Debug.Log(cur_Event);
-        }
+                BEvent ev = EventSpawner.GetEvent(cur_Event);
+                ev.Execute(leaderBird);
+                cur_EventList.Add(ev);
 
-        if (cur_Time.Equals(target_Time)) {
-            gameObject.SetActive(false);
+                WorldTimeManager.instance.SetStop(true);
+                stop = true;
+
+                GUIController.instance.Display_Panel_EventDesc(cur_EventList[cur_EventList.Count - 1].GetIllu(), cur_EventList[cur_EventList.Count - 1].GetDesc());
+
+                Debug.Log(cur_Event);
+            }
+
+            if (cur_Time.Equals(target_Time))
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -66,6 +93,10 @@ public class Clock : MonoBehaviour
     {
         WorldTimeManager.instance.SetStop(true);
         stop = true;
+
+        clickable = false;
+
+        WorldTimeManager.instance.SetSpeedScale(speedScaleWhenClocking);
     }
 
     private void OnDisable()
@@ -82,6 +113,10 @@ public class Clock : MonoBehaviour
 
         // 清空事件及其效果
         ClearEventList();
+
+        WorldTimeManager.instance.SetSpeedScale(1);
+
+        clickable = false;
     }
 
     // 传递时间线

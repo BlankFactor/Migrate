@@ -15,6 +15,7 @@ public class GUIController : MonoBehaviour
     public Animator animator_MouseClickLeft;
     public TextDisplayer textDisplayer;
     public Clock panel_Clock;
+    public EventDescription panel_EventDesc;
 
     [Header("其他对象")]
     public Text text;
@@ -62,6 +63,15 @@ public class GUIController : MonoBehaviour
 
     public void SetTimeline(object _timeline) {
         panel_Clock.SetTimeline(_timeline);
+    }
+    #endregion
+
+    #region EventDesc
+    public void Display_Panel_EventDesc(Sprite _s, string _t) {
+        panel_EventDesc.DisplayWindow(_s, _t);
+    }
+    public void Disable_Panel_EventDesc() {
+        panel_EventDesc.gameObject.SetActive(false);
     }
     #endregion
 
