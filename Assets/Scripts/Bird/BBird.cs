@@ -5,6 +5,7 @@ using UnityEngine;
 public class BBird : MonoBehaviour
 {
     [Header("当前状态")]
+    [ReadOnly]
     public float cur_Speed;
     public float cur_Energy;
     public float cur_healthPoint;
@@ -118,10 +119,12 @@ public class BBird : MonoBehaviour
             {
                 landed = true;
                 isLanding = false;
-                canTakeOff = true;
 
                 SetSpeedScale();
-                lpd.Action(this);
+
+                //受事件处理
+                canTakeOff = true;
+                //lpd.Action(this);
             }
             else
             {
