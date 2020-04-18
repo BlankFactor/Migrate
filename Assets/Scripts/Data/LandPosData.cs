@@ -30,10 +30,20 @@ public class LandPosData : MonoBehaviour
     private Dictionary<EventSpawner.eventName, float> timeline = new Dictionary<EventSpawner.eventName, float>();
 
     [Header("休息处设定")]
-    public bool energy;
-    public bool healthPoint;
+
+    public bool restOnly = false;
 
     public void DeployTimeline() {
+        // 回复体力 不管是否有事件
+        GameObject.Find("LeaderBird").GetComponent<LeaderBird>().SetRestoreEnergy(true);
+        foreach (var i in GameObject.Find("LeaderBird").GetComponent<LeaderBird>().birds)
+            i.SetRestoreEnergy(true);
+
+        if (restOnly) {
+            GameObject.Find("LeaderBird").GetComponent<LeaderBird>().GrantToTakeOff();
+            return;
+        }
+
         timeline.Clear();
 
         for (int i = 0; i < eventList.Count; i++) {
@@ -67,6 +77,8 @@ public class LandPosData : MonoBehaviour
         }
 
         GUIController.instance.SetTimeline(timeline);
+
+        GUIController.instance.Display_Panel_Clock();
     }
 
     public Vector2 GetLandPos() {
@@ -99,18 +111,5 @@ public class LandPosData : MonoBehaviour
         rightPoint.y += offsetY;
 
         Gizmos.DrawLine(leftPoint, rightPoint);
-    }
-
-    /// <summary>
-    /// 激活休息处动作
-    /// </summary>
-    /// <param name="bird"></param>
-    public void Action(BBird bird) {
-        if (energy) {
-            bird.SetRestoreEnergy(true);
-        }
-        if (healthPoint) {
-            bird.SetRestoreHP(true);
-        }
     }
 }

@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VastFoods : BEvent
+public class Foraging : BEvent
 {
-    public VastFoods() {
+    public Foraging()
+    {
         illu = Resources.Load<Sprite>("test");
-        desc = "汇编是世界上最好的编程语言";
+        desc = "觅食";
     }
 
     public override void Execute(LeaderBird _lb)
     {
-        _lb.AddCoreEnergy(50);
-        _lb.ResetSatiety();
+        _lb.AddSatiety(0.75f);
+        _lb.SetRestoreCoreEnergy(true,0.5f);
+
         foreach (var i in _lb.birds)
         {
-            i.AddCoreEnergy(50);
-            i.ResetSatiety();
+            i.AddSatiety(0.75f);
+            i.SetRestoreCoreEnergy(true,0.5f);
         }
 
-        GUIController.instance.Display_Panel_EventDesc(GetIllu(), GetDesc());
+        GUIController.instance.Display_Panel_EventDesc(GetIllu(),GetDesc());
     }
 
     public override string GetDesc()
@@ -34,6 +36,11 @@ public class VastFoods : BEvent
 
     public override void Undo(LeaderBird _lb)
     {
-       
+        _lb.SetRestoreCoreEnergy(false);
+
+        foreach (var i in _lb.birds)
+        {
+            i.SetRestoreCoreEnergy(false);
+        }
     }
 }

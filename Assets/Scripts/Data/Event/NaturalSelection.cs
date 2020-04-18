@@ -2,21 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VastFoods : BEvent
+public class NaturalSelection : BEvent
 {
-    public VastFoods() {
+    public NaturalSelection()
+    {
         illu = Resources.Load<Sprite>("test");
-        desc = "汇编是世界上最好的编程语言";
+        desc = "被吃";
     }
 
     public override void Execute(LeaderBird _lb)
     {
-        _lb.AddCoreEnergy(50);
-        _lb.ResetSatiety();
-        foreach (var i in _lb.birds)
+        if (_lb.birds.Count >= 1)
         {
-            i.AddCoreEnergy(50);
-            i.ResetSatiety();
+            int index = Random.Range(0, _lb.birds.Count);
+
+            _lb.birds[index].Die();
+
+            desc = "一只被吃了";
+            illu = Resources.Load<Sprite>("test");
+        }
+        else {
+            desc = "你溜了";
+            illu = Resources.Load<Sprite>("test");
         }
 
         GUIController.instance.Display_Panel_EventDesc(GetIllu(), GetDesc());
@@ -34,6 +41,5 @@ public class VastFoods : BEvent
 
     public override void Undo(LeaderBird _lb)
     {
-       
     }
 }

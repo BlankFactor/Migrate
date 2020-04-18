@@ -126,8 +126,6 @@ public class LeaderBird : BBird
                 // 改版后
                 lpd.DeployTimeline();
                 // *********
-
-                GUIController.instance.Display_Panel_Clock();
             }
             else
             {
@@ -255,7 +253,11 @@ public class LeaderBird : BBird
         return 0;
     }
 
-    protected override void BirdDead()
+    public List<FollowerBird> GetFollowers() {
+        return birds;
+    }
+
+     public override void Die()
     {
         isFlying = false;
         canTakeOff = false;

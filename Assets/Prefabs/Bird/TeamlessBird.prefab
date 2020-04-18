@@ -170,30 +170,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cur_Speed: 0
   cur_Energy: 0
-  cur_healthPoint: 0
+  cur_CoreEnergy: 0
+  cur_Satiety: 0
   alive: 1
   isFlying: 0
   isSpeedingUp: 0
   isLanding: 0
   landed: 1
   canTakeOff: 1
+  energy_Empty: 0
   restoreEnergy: 0
-  restoreHP: 0
+  restoreCoreEnergy: 0
+  hungry: 0
   landPos: {x: 0, y: 0}
   lpd: {fileID: 0}
   energy: 100
   maxSpeed: 5
   speedScale: 1
   acceleration: 3
-  healthPoint: 100
+  coreEnergy: 100
+  satiety: 0
   climbSpeed: 3
   landSpeed: 4
   dec_Energy_Normal: 1
   dec_Energy_SpeedUp: 5
-  dec_HelathPoint: 0
+  dec_CoreEnergy: 0.5
+  dec_Satiety: 1
   inc_Energy: 5
-  inc_HealthPoint: 3
+  inc_CoreEnergy: 0
   inc_Speed: 3
+  scale_RestoreEnergy: 1
+  scale_RestoreCoreEnergy: 1
   rid: {fileID: 0}
   clusterPos: {x: 0, y: 0}
   borderLayer:

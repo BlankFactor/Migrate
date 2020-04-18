@@ -8,7 +8,8 @@ public class BBird : MonoBehaviour
     [ReadOnly]
     public float cur_Speed;
     public float cur_Energy;
-    public float cur_healthPoint;
+    public float cur_CoreEnergy;
+    public float cur_Satiety;
 
     [Space]
     public bool alive = true;
@@ -24,18 +25,20 @@ public class BBird : MonoBehaviour
     public bool energy_Empty;
 
     public bool restoreEnergy;
-    public bool restoreHP;
+    public bool restoreCoreEnergy;
+    public bool hungry;
 
     public Vector2 landPos;
     public LandPosData lpd;
 
-    [Header("基本属性")]
+    [Header("基本属性配置")]
     public float energy;
     public float maxSpeed;
     public float speedScale = 1;
     private int speedScale_Animator = 1;
     public float acceleration;
-    public float healthPoint;
+    public float coreEnergy;
+    public float satiety;
     [Range(0, 5f)]
     public float climbSpeed;
     public float landSpeed;
@@ -43,10 +46,16 @@ public class BBird : MonoBehaviour
     [Space]
     public float dec_Energy_Normal;
     public float dec_Energy_SpeedUp;
-    public float dec_HelathPoint;
-    public float inc_Energy;
-    public float inc_HealthPoint;
+    public float dec_CoreEnergy;
+    public float dec_Satiety;
+    public float inc_Energy = 1.0f;
+    public float inc_CoreEnergy;
     public float inc_Speed;
+
+    [Space]
+    public float scale_RestoreEnergy = 1.0f;
+    public float scale_RestoreCoreEnergy = 1.0f;
+    
 
     [Header("组件及对象")]
     public Rigidbody2D rid;
@@ -60,14 +69,20 @@ public class BBird : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         cur_Energy = energy;
-        cur_healthPoint = healthPoint;
+        cur_CoreEnergy = coreEnergy;
+        cur_Satiety = satiety;
     }
 
 
     public virtual void Update()
     {
-        CheckEnergy();
-        CheckHealthPoint();
+        if (!WorldTimeManager.instance.stop)
+        {
+            CheckEnergy();
+            CheckCoreEnergy();
+            CheckSatiety();
+        }
+
         SwitchAnimation();
     }
 
@@ -145,66 +160,16 @@ public class BBird : MonoBehaviour
         SetSpeedScale();
         lpd = null;
         SetRestoreEnergy(false);
-        SetRestoreHP(false);
+        SetRestoreCoreEnergy(false);
 
         Vector2 vel = rid.velocity;
         vel = new Vector2(maxSpeed / 2, 0);
         ChangeVelocity(vel);
     }
 
-    /// <summary>
-    /// 检测体力
-    /// </summary>
-    protected virtual void CheckEnergy() {
-        if (isFlying)
-        {
-            if (cur_Energy <= 0)
-            {
-                //BirdDead(); 体力为空时消耗生命值而非立即死亡
 
-                if(!energy_Empty)
-                    energy_Empty = true;
-            }
-            else
-            {
-                if (isSpeedingUp)
-                    cur_Energy -= Time.deltaTime * dec_Energy_SpeedUp;
-                else
-                    cur_Energy -= Time.deltaTime * dec_Energy_Normal;
-            }
-        }
-        else if (landed && restoreEnergy) {
-            if (energy_Empty) {
-                energy_Empty = false;
-            }
 
-            cur_Energy += Time.deltaTime * inc_Energy;
-            cur_Energy = Mathf.Clamp(cur_Energy, 0, cur_healthPoint);
-            //cur_Energy = Mathf.Clamp(cur_Energy, 0, energy);
-        }
-    }
-    /// <summary>
-    /// 检测生命值
-    /// </summary>
-    private void CheckHealthPoint() {
-        // 体力为空时消耗生命值
-        if(energy_Empty && isFlying)
-            cur_healthPoint -= dec_HelathPoint * Time.deltaTime;
-
-        if (restoreHP) {
-            cur_healthPoint += inc_HealthPoint * Time.deltaTime;
-            cur_healthPoint = Mathf.Clamp(cur_healthPoint, 0, healthPoint);
-        }
-
-        if (cur_healthPoint <= 0) {
-            BirdDead();
-        }
-    }
-    private void SetDec_HealthPoint(float _v) {
-        dec_HelathPoint += _v;
-    }
-
-    protected virtual void BirdDead() {
+    public virtual void Die() {
         isFlying = false;
         canTakeOff = false;
 
@@ -261,6 +226,154 @@ public class BBird : MonoBehaviour
         SetSpeedScale();
     }
 
+    #region 体力
+    /// <summary>
+    /// 检测体力
+    /// </summary>
+    protected virtual void CheckEnergy()
+    {
+        if (isFlying)
+        {
+            if (cur_Energy <= 0)
+            {
+                //BirdDead(); 体力为空时消耗生命值而非立即死亡
+
+                if (!energy_Empty)
+                    energy_Empty = true;
+            }
+            else
+            {
+                if (isSpeedingUp)
+                    cur_Energy -= Time.deltaTime * dec_Energy_SpeedUp;
+                else
+                    cur_Energy -= Time.deltaTime * dec_Energy_Normal;
+            }
+        }
+        else if (landed && restoreEnergy)
+        {
+            if (energy_Empty)
+            {
+                energy_Empty = false;
+            }
+
+            cur_Energy += Time.deltaTime * inc_Energy * scale_RestoreEnergy;
+            cur_Energy = Mathf.Clamp(cur_Energy, 0, cur_CoreEnergy);
+            //cur_Energy = Mathf.Clamp(cur_Energy, 0, energy);
+        }
+    }
+
+
+    public void SetRestoreEnergy(bool _v, float _scale = 1.0f)
+    {
+        restoreEnergy = _v;
+
+        if (restoreEnergy)
+        {
+            if (scale_RestoreEnergy < _scale)
+                scale_RestoreEnergy = _scale;
+        }
+        else
+        {
+            scale_RestoreEnergy = _scale;
+        }
+    }
+
+    #endregion
+
+    #region 核心体力
+    /// <summary>
+    /// 检测核心体力
+    /// </summary>
+    private void CheckCoreEnergy()
+    {
+        // 体力为空时消耗核心体力
+        if (energy_Empty && isFlying)
+            cur_CoreEnergy -= dec_CoreEnergy * Time.deltaTime;
+
+        if (hungry)
+        {
+            cur_CoreEnergy -= dec_CoreEnergy * Time.deltaTime;
+        }
+
+        if (restoreCoreEnergy)
+        {
+            cur_CoreEnergy += inc_CoreEnergy * scale_RestoreCoreEnergy * Time.deltaTime;
+            cur_CoreEnergy = Mathf.Clamp(cur_CoreEnergy, 0, coreEnergy);
+        }
+
+        if (cur_CoreEnergy <= 0)
+        {
+            Die();
+        }
+    }
+    /// <summary>
+    /// 设置回复核心体力
+    /// </summary>
+    /// <param name="_v"></param>
+    /// <param name="_scale">若 回复 体力 则第二个参数为回复速度缩放</param>
+    public void SetRestoreCoreEnergy(bool _v, float _scale = 1.0f)
+    {
+        restoreCoreEnergy = _v;
+
+        if (restoreCoreEnergy)
+        {
+            if(scale_RestoreCoreEnergy < _scale)
+                scale_RestoreCoreEnergy = _scale;
+        }
+        else {
+            scale_RestoreCoreEnergy = _scale;
+        }
+    }
+
+    public void AddCoreEnergy(float _v) {
+        cur_CoreEnergy += _v;
+        cur_CoreEnergy = Mathf.Clamp(cur_CoreEnergy, 0, coreEnergy);
+    }
+
+    private void SetDec_CoreEnergy(float _v)
+    {
+        dec_CoreEnergy += _v;
+    }
+
+    #endregion
+
+    #region 饱食度
+    public void CheckSatiety()
+    {
+        if (!hungry && GameManager.instance.gameStart)
+        {
+            cur_Satiety -= Time.deltaTime * dec_Satiety;
+            cur_Satiety = Mathf.Clamp(cur_Satiety, 0, satiety);
+
+            if (cur_Satiety == 0)
+                hungry = true;
+        }
+    }
+
+    /// <summary>
+    /// 重设饱食度
+    /// </summary>
+    public void ResetSatiety()
+    {
+        hungry = false;
+        cur_Satiety = satiety;
+    }
+
+
+    /// <summary>
+    /// 增加饱食度 
+    /// </summary>
+    /// <param name="_scale">增量系数 为参数值 * 最大值</param>
+    public void AddSatiety(float _scale)
+    {
+        cur_Satiety += satiety * _scale;
+        cur_Satiety = Mathf.Clamp(cur_Satiety, 0, satiety);
+
+        hungry = false;
+    }
+    #endregion
+
+
     protected void ChangeVelocity(Vector2 _vel) {
         rid.velocity = _vel;
         cur_Speed = _vel.x;
@@ -272,11 +385,5 @@ public class BBird : MonoBehaviour
         return cur_Speed;
     }
 
-    public void SetRestoreEnergy(bool _v) {
-        restoreEnergy = _v;
-    }
-    public void SetRestoreHP(bool _v)
-    {
-        restoreHP = _v;
-    }
+
 }

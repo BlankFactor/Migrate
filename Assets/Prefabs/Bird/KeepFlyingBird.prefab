@@ -85,22 +85,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cur_Speed: 0
   cur_Energy: 0
-  cur_healthPoint: 0
+  cur_CoreEnergy: 0
   alive: 0
   isFlying: 1
   isSpeedingUp: 0
   isLanding: 0
   landed: 0
   canTakeOff: 0
+  energy_Empty: 0
   restoreEnergy: 0
-  restoreHP: 0
+  restoreCoreEnergy: 0
+  hungry: 0
   landPos: {x: 0, y: 0}
   lpd: {fileID: 0}
   energy: 1
   maxSpeed: 4
   speedScale: 1
   acceleration: 3
-  healthPoint: 1
+  coreEnergy: 1
   climbSpeed: 0
   landSpeed: 0
   dec_Energy_Normal: 0

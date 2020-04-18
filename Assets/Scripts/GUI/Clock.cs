@@ -47,6 +47,7 @@ public class Clock : MonoBehaviour
         }
 
         if (stop) return;
+
         else
         {
             cur_Time += WorldTimeManager.instance.DeltaTime() / 1440f;
@@ -76,8 +77,6 @@ public class Clock : MonoBehaviour
 
                 WorldTimeManager.instance.SetStop(true);
                 stop = true;
-
-                GUIController.instance.Display_Panel_EventDesc(cur_EventList[cur_EventList.Count - 1].GetIllu(), cur_EventList[cur_EventList.Count - 1].GetDesc());
 
                 Debug.Log(cur_Event);
             }
@@ -115,6 +114,7 @@ public class Clock : MonoBehaviour
         ClearEventList();
 
         WorldTimeManager.instance.SetSpeedScale(1);
+        GUIController.instance.Disable_Panel_EventDesc();
 
         clickable = false;
     }

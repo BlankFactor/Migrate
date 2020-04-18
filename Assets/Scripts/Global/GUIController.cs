@@ -56,6 +56,10 @@ public class GUIController : MonoBehaviour
 
     #region Clock
 
+    public void Shutdown_Clock() {
+        panel_Clock.gameObject.SetActive(false);
+    }
+
     public void Display_Panel_Clock()
     {
         panel_Clock.gameObject.SetActive(true);

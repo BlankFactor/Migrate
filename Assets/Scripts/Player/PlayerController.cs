@@ -181,6 +181,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TakeOffForcibly() {
+        landed = false;
+        bird.TakeOff();
+
+        // 高度初始化
+        ResetBirdHeight();
+
+        Invoke("GrandControl", 0.5f);
+        CameraManager.instance.ConverToNearCamera();
+    }
+
     /// <summary>
     /// 寻找最近的已探明着陆点
     /// </summary>
