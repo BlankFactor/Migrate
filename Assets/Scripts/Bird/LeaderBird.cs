@@ -31,6 +31,13 @@ public class LeaderBird : BBird
         base.FixedUpdate();
     }
 
+    public override void Update()
+    {
+        base.Update();
+
+        GUIController.instance.ReflashEnergyBar(cur_CoreEnergy / coreEnergy, cur_Energy / coreEnergy);
+    }
+
     public override void Start()
     {
         base.Start();

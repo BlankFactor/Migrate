@@ -288,7 +288,7 @@ public class BBird : MonoBehaviour
     {
         // 体力为空时消耗核心体力
         if (energy_Empty && isFlying)
-            cur_CoreEnergy -= dec_CoreEnergy * Time.deltaTime;
+            cur_CoreEnergy -= dec_CoreEnergy * Time.deltaTime * 5.0f;
 
         if (hungry)
         {
@@ -302,7 +302,7 @@ public class BBird : MonoBehaviour
         }
 
         if (cur_CoreEnergy <= 0)
-        {
+        {   
             Die();
         }
     }
