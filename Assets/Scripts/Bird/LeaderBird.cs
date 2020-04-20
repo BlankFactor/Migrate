@@ -276,7 +276,11 @@ public class LeaderBird : BBird
 
         // Destroy(gameObject, 5);
 
+        GUIController.instance.Display_Panel_Ending();
+
         GlobalAudioPlayer.instance.ChangeToBirdListener(false);
+
+        WorldTimeManager.instance.SetStop(true);
 
         GameManager.instance.leaderBirdDead();
         CameraManager.instance.ClearFollowTarget();

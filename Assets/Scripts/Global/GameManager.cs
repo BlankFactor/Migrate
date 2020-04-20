@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         GlobalAudioPlayer.instance.Play_Bgm();
     }
     public void EndGame() {
+        gameStart = false;
         gameEnd = true;
     }
 

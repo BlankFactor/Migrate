@@ -17,6 +17,7 @@ public class GUIController : MonoBehaviour
     public Clock panel_Clock;
     public EventDescription panel_EventDesc;
     public EnergyBar energyBar;
+    public Ending panel_Ending;
 
     [Header("其他对象")]
     public Text text;
@@ -34,6 +35,13 @@ public class GUIController : MonoBehaviour
 
     public void ReflashEnergyBar(float _core,float _energy) {
         energyBar.Reflash(_core, _energy);
+    }
+
+    public void Display_Panel_Ending() {
+        panel_Ending.Display();
+    }
+    public void Disable_Panel_Ending() {
+        panel_Ending.Disable();
     }
 
     #region Operation
