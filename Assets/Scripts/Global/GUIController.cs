@@ -30,7 +30,7 @@ public class GUIController : MonoBehaviour
 
     private void Start()
     {
-       StartGame();
+       //StartGame();
     }
 
     public void ReflashEnergyBar(float _core,float _energy) {

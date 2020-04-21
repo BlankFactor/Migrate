@@ -9,6 +9,7 @@ public class CameraManager : MonoBehaviour
 
     public GameObject nearCamera;
     public GameObject farCamera;
+    public GameObject tempCamera;
 
     private int priority;
 
@@ -28,6 +29,10 @@ public class CameraManager : MonoBehaviour
 
     public void ConverToFarCamera() {
         nearCamera.GetComponent<CinemachineVirtualCamera>().Priority = priority - 1;
+    }
+
+    public void RemoveTempCamera() {
+        tempCamera.GetComponent<CinemachineVirtualCamera>().Priority = 1;
     }
 
     public void ClearFollowTarget() {
