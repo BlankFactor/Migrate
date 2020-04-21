@@ -162,7 +162,6 @@ public class PlayerController : MonoBehaviour
                     GUIController.instance.SetMouseClickLeft_FadeIn(false, true);
                 }
             }
-                
         }
     }
 

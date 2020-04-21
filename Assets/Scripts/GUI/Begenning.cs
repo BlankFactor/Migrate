@@ -15,11 +15,22 @@ public class Begenning : MonoBehaviour
 
     private void Start()
     {
-        DisplayText();
+        //DisplayText();
     }
 
     private void Update()
     {
+        // 临时使用 不保留原开场演出
+
+        if (Input.GetMouseButtonDown(0)) {
+            GameManager.instance.StartGame();
+            PlayerController.instance.TakeOffForcibly();
+            CameraManager.instance.RemoveTempCamera();
+            this.enabled = false;
+        }
+
+        //
+
         if (listenning) {
             //HandleInput();
         }
@@ -34,6 +45,7 @@ public class Begenning : MonoBehaviour
         ani.speed = 0;
         listenning = true;
     }
+
     public void PlayAnimation() {
         ani.speed = 1;
         listenning = false;
