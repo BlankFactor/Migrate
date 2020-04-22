@@ -198,21 +198,12 @@ public class ExhaustGas : MonoBehaviour
         return _y / a;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (!trig) return;
 
         if (collision.tag.Contains("Bird")) {
-            collision.SendMessage("SetDec_HealthPoint", dec_HealthPoint);
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!trig) return;
-
-        if (collision.tag.Contains("Bird"))
-        {
-            collision.SendMessage("SetDec_HealthPoint", -dec_HealthPoint);
+            collision.GetComponent<BBird>().cur_CoreEnergy -= 30.0f * Time.deltaTime;
         }
     }
 }

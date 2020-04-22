@@ -86,6 +86,7 @@ MonoBehaviour:
   cur_Speed: 0
   cur_Energy: 0
   cur_CoreEnergy: 0
+  cur_Satiety: 0
   alive: 0
   isFlying: 1
   isSpeedingUp: 0
@@ -103,14 +104,18 @@ MonoBehaviour:
   speedScale: 1
   acceleration: 3
   coreEnergy: 1
+  satiety: 0
   climbSpeed: 0
   landSpeed: 0
   dec_Energy_Normal: 0
   dec_Energy_SpeedUp: 0
-  dec_HelathPoint: 0
+  dec_CoreEnergy: 0
+  dec_Satiety: 0
   inc_Energy: 0
-  inc_HealthPoint: 0
+  inc_CoreEnergy: 0
   inc_Speed: 0
+  scale_RestoreEnergy: 1
+  scale_RestoreCoreEnergy: 1
   rid: {fileID: 0}
   sprite: {fileID: 8310983564803989770}
 --- !u!1 &5218283600760975645
@@ -185,7 +190,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6555da62b7b5b934b998fba4a5500349, type: 3}
-  m_Color: {r: 0.503827, g: 0.5833924, b: 0.6981132, a: 1}
+  m_Color: {r: 0.92096835, g: 0.95927113, b: 0.9811321, a: 0.6392157}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

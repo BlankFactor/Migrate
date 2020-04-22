@@ -53,6 +53,11 @@ public class FollowerBird : BBird
         if (randomSpeed_Tired) {
             speed_Tired += Random.Range(-offset_Speed_Tired, offset_Speed_Tired);
         }
+
+        float size = Random.Range(0.75f, 1.25f);
+        Vector3 scale = new Vector3(size,size,1);
+
+        transform.localScale = scale;
     }
 
     public override void Update()

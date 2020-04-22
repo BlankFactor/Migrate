@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
     public float heightPointSpeed;
     
     [Header("飞行高度限制边界属性")]
-    [Range(0,15)]
+    [Range(0,30)]
     public float border_Top;
-    [Range(-15, 0)]
+    [Range(-30, 0)]
     public float border_Bottom;
     public float border_Offset;
     public float border_Width;

@@ -23,6 +23,8 @@ public class LeaderBird : BBird
 
     [Header("视野黑边")]
     public Volume vignette;
+    public Animator dof;
+    private bool tired;
     [Space]
     public float energy_Threadhold = 20;
 
@@ -42,16 +44,35 @@ public class LeaderBird : BBird
     {
         base.Start();
         fbt.CreateTrigger(pivotDistance, pivotVerticalOffset, farBorderPlane);
+
+        cur_Energy = 75;
+        cur_CoreEnergy = 75;
     }
 
     protected override void CheckEnergy()
     {
         base.CheckEnergy();
+        CheckIfTired();
 
 
-        if (alive && cur_Energy <= energy_Threadhold) {
-            vignette.weight = (energy_Threadhold - cur_Energy) / energy_Threadhold;
-            vignette.weight = Mathf.Clamp(vignette.weight, 0, 1);
+    }
+
+    private void CheckIfTired() {
+        if (alive && cur_Energy <= energy_Threadhold && !tired)
+        {
+            // vignette.weight = (energy_Threadhold - cur_Energy) / energy_Threadhold;
+            // vignette.weight = Mathf.Clamp(vignette.weight, 0, 1);
+            dof.SetBool("DOF", true);
+            tired = true;
+
+            maxSpeed -= 2;
+        }
+        else if (tired && alive && cur_Energy > energy_Threadhold)
+        {
+            dof.SetBool("DOF", false);
+            tired = false;
+
+            maxSpeed += 2;
         }
     }
 
@@ -275,10 +296,12 @@ public class LeaderBird : BBird
         rid.gravityScale = 0.8f;
 
         // Destroy(gameObject, 5);
+        
 
         GUIController.instance.Display_Panel_Ending();
 
         GlobalAudioPlayer.instance.ChangeToBirdListener(false);
+        GlobalAudioPlayer.instance.Play_BirdDie();
 
         WorldTimeManager.instance.SetStop(true);
 

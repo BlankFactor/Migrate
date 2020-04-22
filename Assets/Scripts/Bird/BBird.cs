@@ -59,14 +59,16 @@ public class BBird : MonoBehaviour
 
     [Header("组件及对象")]
     public Rigidbody2D rid;
-    private SpriteRenderer spriteRender;
+    protected SpriteRenderer spriteRender;
     private Animator animator;
+    private AudioSource audioSource;
 
     public virtual void Start()
     {
         rid = GetComponent<Rigidbody2D>();
         spriteRender = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         cur_Energy = energy;
         cur_CoreEnergy = coreEnergy;
@@ -174,6 +176,8 @@ public class BBird : MonoBehaviour
         canTakeOff = false;
 
         alive = false;
+
+        audioSource.Play();
 
         rid.bodyType = RigidbodyType2D.Dynamic;
         rid.gravityScale = 0.8f;

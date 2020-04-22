@@ -15,7 +15,7 @@ public class Trap : BEvent
         bool escape = false;
 
         if (_lb.birds.Count >= 1) {
-            escape = Random.Range(0, 1.0f) <= 0.5f ? true : false;
+            escape = Random.Range(0, 1.0f) <= 0.25f ? true : false;
         }
 
         if (escape)

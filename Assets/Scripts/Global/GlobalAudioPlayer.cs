@@ -20,6 +20,7 @@ public class GlobalAudioPlayer : MonoBehaviour
     public AudioClip sound_Bgm;
     public AudioClip sound_Bell;
     public AudioClip sound_Gunfire;
+    public AudioClip sound_BirdDie;
 
     [Header("接受对象")]
     public AudioListener globalListener;
@@ -42,6 +43,11 @@ public class GlobalAudioPlayer : MonoBehaviour
 
     public void Play_Gunfire() {
         audio_Sound.clip = sound_Gunfire;
+        audio_Sound.Play();
+    }
+
+    public void Play_BirdDie() {
+        audio_Sound.clip = sound_BirdDie;
         audio_Sound.Play();
     }
 
