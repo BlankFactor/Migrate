@@ -34,15 +34,30 @@ public class GUIController : MonoBehaviour
     }
 
     public void ReflashEnergyBar(float _core,float _energy) {
+
+
         energyBar.Reflash(_core, _energy);
     }
 
-    public void Display_Panel_Ending() {
-        panel_Ending.Display();
+    #region Ending
+    public void Display_Panel_Ending()
+    {
+        panel_Ending.FadeIn();
     }
-    public void Disable_Panel_Ending() {
-        panel_Ending.Disable();
+    public void Disable_Panel_Ending()
+    {
+        panel_Ending.FadeOut();
     }
+
+    public void Display_Text_Ending()
+    {
+        Invoke("displayTextEnding", 10f);
+    }
+    private void displayTextEnding() {
+        panel_Ending.StartDisplayResult();
+    }
+
+    #endregion
 
     #region Operation
     public void SetMouseClickLeft_FadeIn(bool value, bool _land)
@@ -65,7 +80,6 @@ public class GUIController : MonoBehaviour
         textDisplayer.AddString(_s);
     }
     #endregion
-
 
     #region Clock
 

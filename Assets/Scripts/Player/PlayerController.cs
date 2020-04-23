@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.gameEnd || !GameManager.instance.gameStart) return;
 
+
         if (bird == null) return;
 
         if (!landed)
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
         if (bird == null) return;
 
-        if (!landed)
+        if (!landed && controllable)
         {
             BirdHeightControl();
         }
@@ -119,12 +120,12 @@ public class PlayerController : MonoBehaviour
     /// 加速按键监测
     /// </summary>
     private void AccelerateBird() {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && controllable)
         {
             speedUpPressed = true;
             bird.SetSpeedUp(speedUpPressed);
         }
-        else if (Input.GetMouseButtonUp(1)) {
+        else if (Input.GetMouseButtonUp(1) && controllable) {
             speedUpPressed = false;
             bird.SetSpeedUp(speedUpPressed);
         }
@@ -214,6 +215,10 @@ public class PlayerController : MonoBehaviour
     private void GrandControl()
     {
         controllable = true;
+    }
+
+    public void SetControlable(bool _v) {
+        controllable = _v;
     }
 
     public void SetBird(LeaderBird _bird) {

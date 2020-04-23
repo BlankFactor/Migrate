@@ -190,15 +190,15 @@ MonoBehaviour:
   speedScale: 1
   acceleration: 3
   coreEnergy: 100
-  satiety: 0
+  satiety: 100
   climbSpeed: 3
   landSpeed: 4
   dec_Energy_Normal: 1
-  dec_Energy_SpeedUp: 5
+  dec_Energy_SpeedUp: 2
   dec_CoreEnergy: 0.5
   dec_Satiety: 1
-  inc_Energy: 5
-  inc_CoreEnergy: 0
+  inc_Energy: 2
+  inc_CoreEnergy: 1
   inc_Speed: 3
   scale_RestoreEnergy: 1
   scale_RestoreCoreEnergy: 1
@@ -215,7 +215,7 @@ MonoBehaviour:
   speed_Tired: 2
   randomOffset: 1
   threadholdOffset: 5
-  threadhold_Tired: 30
+  threadhold_Tired: 10
   inPosition: 0
   inBorder: 0
   reflectionTime: 1

@@ -211,9 +211,9 @@ public class FollowerBird : BBird
         gameObject.layer = 11;
     }
 
-    public override void Die()
+    public override void Die(bool _sound = true)
     {
-        base.Die();
+        base.Die(_sound);
         leader.RemoveFollower(this);
     }
 

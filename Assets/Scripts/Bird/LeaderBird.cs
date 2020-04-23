@@ -10,9 +10,9 @@ public class LeaderBird : BBird
     public LayerMask teamlessBirdLayer;
 
     [Header("鸟群飞行三角范围设定")]
-    [Range(0,20)]
+    [Range(0, 20)]
     public float pivotDistance;
-    [Range(-10,10)]
+    [Range(-10, 10)]
     public float pivotVerticalOffset;
     [Range(0, 10)]
     public float farBorderPlane;
@@ -62,16 +62,26 @@ public class LeaderBird : BBird
         {
             // vignette.weight = (energy_Threadhold - cur_Energy) / energy_Threadhold;
             // vignette.weight = Mathf.Clamp(vignette.weight, 0, 1);
-            dof.SetBool("DOF", true);
-            tired = true;
-
-            maxSpeed -= 2;
+            SetTired(true);
         }
         else if (tired && alive && cur_Energy > energy_Threadhold)
         {
-            dof.SetBool("DOF", false);
-            tired = false;
+            SetTired(false);
+        }
+    }
 
+    public void SetTired(bool _v) {
+        if (tired == _v) return;
+
+        tired = _v;
+
+        if (tired)
+        {
+            dof.SetBool("DOF", true);
+            maxSpeed -= 2;
+        }
+        else {
+            dof.SetBool("DOF", false);
             maxSpeed += 2;
         }
     }
@@ -112,7 +122,6 @@ public class LeaderBird : BBird
     public override void ChangeHeight(float _posY)
     {
         base.ChangeHeight(_posY);
-
         foreach (var v in birds)
         {
             v.ChangeHeight(_posY + Random.Range(0,0.05f));
@@ -285,7 +294,7 @@ public class LeaderBird : BBird
         return birds;
     }
 
-     public override void Die()
+     public override void Die(bool _sound = true)
     {
         isFlying = false;
         canTakeOff = false;
@@ -301,7 +310,9 @@ public class LeaderBird : BBird
         GUIController.instance.Display_Panel_Ending();
 
         GlobalAudioPlayer.instance.ChangeToBirdListener(false);
-        GlobalAudioPlayer.instance.Play_BirdDie();
+
+        if(_sound)
+            GlobalAudioPlayer.instance.Play_BirdDie();
 
         WorldTimeManager.instance.SetStop(true);
 

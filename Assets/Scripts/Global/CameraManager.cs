@@ -10,6 +10,9 @@ public class CameraManager : MonoBehaviour
     public GameObject nearCamera;
     public GameObject farCamera;
     public GameObject tempCamera;
+    public GameObject telephotoCamera;
+
+    public SkyFollow sky;
 
     private int priority;
 
@@ -31,9 +34,17 @@ public class CameraManager : MonoBehaviour
         nearCamera.GetComponent<CinemachineVirtualCamera>().Priority = priority - 1;
     }
 
+    public void ConverToTelephotoCamera()
+    {
+        telephotoCamera.GetComponent<CinemachineVirtualCamera>().Priority = 50;
+        sky.target = telephotoCamera.transform;
+    }
+
     public void RemoveTempCamera() {
         tempCamera.GetComponent<CinemachineVirtualCamera>().Priority = 1;
+        
     }
+
 
     public void ClearFollowTarget() {
         nearCamera.GetComponent<CinemachineVirtualCamera>().Follow = null;

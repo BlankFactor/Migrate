@@ -25,6 +25,7 @@ public class WorldTimeManager : MonoBehaviour
 
     [Space]
     public bool stop = true;
+    public bool keepDayNight = false;
 
     [Header("时间设定")]
     public float timeScale = 60;
@@ -65,7 +66,11 @@ public class WorldTimeManager : MonoBehaviour
     }
 
     private void RecordTime() {
-        if (stop) return;
+
+        if (!keepDayNight)
+        {
+            if (stop) return;
+        }
 
         if (sec < 0)
         {
@@ -86,6 +91,10 @@ public class WorldTimeManager : MonoBehaviour
     /// <param name="_v">缩放量 缺省为60</param>
     public void SetTimeScale(float _v = 60f) {
         timeScale = _v;
+    }
+
+    public void SetKeepDayNight(bool _v) {
+        keepDayNight = _v;
     }
 
     public void SetSpeedScale(float _v) {

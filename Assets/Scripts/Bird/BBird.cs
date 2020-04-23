@@ -171,13 +171,14 @@ public class BBird : MonoBehaviour
 
 
 
-    public virtual void Die() {
+    public virtual void Die(bool _sound = true) {
         isFlying = false;
         canTakeOff = false;
 
         alive = false;
 
-        audioSource.Play();
+        if(_sound)
+            audioSource.Play();
 
         rid.bodyType = RigidbodyType2D.Dynamic;
         rid.gravityScale = 0.8f;
@@ -251,6 +252,8 @@ public class BBird : MonoBehaviour
                     cur_Energy -= Time.deltaTime * dec_Energy_SpeedUp;
                 else
                     cur_Energy -= Time.deltaTime * dec_Energy_Normal;
+
+                cur_Energy = Mathf.Clamp(cur_Energy, 0, cur_CoreEnergy);
             }
         }
         else if (landed && restoreEnergy)

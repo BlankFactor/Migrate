@@ -16,7 +16,7 @@ public class NaturalSelection : BEvent
         {
             int index = Random.Range(0, _lb.birds.Count);
 
-            _lb.birds[index].Die();
+            _lb.birds[index].Die(false);
 
             desc = "一只被吃了";
             illu = Resources.Load<Sprite>("test");
