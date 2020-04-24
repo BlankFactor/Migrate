@@ -63,6 +63,7 @@ public class LeaderBird : BBird
             // vignette.weight = (energy_Threadhold - cur_Energy) / energy_Threadhold;
             // vignette.weight = Mathf.Clamp(vignette.weight, 0, 1);
             SetTired(true);
+            GUIController.instance.AddString("视线变的模糊又昏暗,每扇动一次翅膀变得乏力");
         }
         else if (tired && alive && cur_Energy > energy_Threadhold)
         {
@@ -290,6 +291,29 @@ public class LeaderBird : BBird
         return 0;
     }
 
+    public override void CheckSatiety()
+    {
+        if (!hungry && GameManager.instance.gameStart)
+        {
+            cur_Satiety -= Time.deltaTime * dec_Satiety;
+            cur_Satiety = Mathf.Clamp(cur_Satiety, 0, satiety);
+
+            if (cur_Satiety == 0)
+            {
+                hungry = true;
+                GUIController.instance.Set_Display_Hungry(true);
+                GUIController.instance.AddString("饥饿带来的乏力感正在蚕食着全身");
+            }
+        }
+    }
+
+    public override void ResetSatiety()
+    {
+        hungry = false;
+        cur_Satiety = satiety;
+        GUIController.instance.Set_Display_Hungry(false);
+    }
+
     public List<FollowerBird> GetFollowers() {
         return birds;
     }
@@ -306,7 +330,7 @@ public class LeaderBird : BBird
 
         // Destroy(gameObject, 5);
         
-
+        GUIController.instance.Disable_EnergyBar();
         GUIController.instance.Display_Panel_Ending();
 
         GlobalAudioPlayer.instance.ChangeToBirdListener(false);
@@ -318,15 +342,6 @@ public class LeaderBird : BBird
 
         GameManager.instance.leaderBirdDead();
         CameraManager.instance.ClearFollowTarget();
-        StartCoroutine(RemoveVignetee());
-    }
-
-    private IEnumerator RemoveVignetee() {
-        while (vignette.weight != 0) {
-            vignette.weight -= Time.deltaTime * 0.5f;
-            vignette.weight = Mathf.Clamp(vignette.weight, 0, 1);
-            yield return Time.deltaTime;
-        }
     }
 
     private void OnDrawGizmos()

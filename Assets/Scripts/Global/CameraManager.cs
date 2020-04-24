@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
     public GameObject tempCamera;
     public GameObject telephotoCamera;
 
+    public CinemachineBrain brain;
     public SkyFollow sky;
 
     private int priority;
@@ -36,7 +37,9 @@ public class CameraManager : MonoBehaviour
 
     public void ConverToTelephotoCamera()
     {
+        brain.m_DefaultBlend.m_Time = 40;
         telephotoCamera.GetComponent<CinemachineVirtualCamera>().Priority = 50;
+
         sky.target = telephotoCamera.transform;
     }
 

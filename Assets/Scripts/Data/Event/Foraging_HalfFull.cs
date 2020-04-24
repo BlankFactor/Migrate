@@ -13,12 +13,12 @@ public class Foraging_HalfFull : BEvent
     public override void Execute(LeaderBird _lb)
     {
         _lb.AddSatiety(0.5f);
-        _lb.SetRestoreCoreEnergy(true);
+        _lb.SetRestoreCoreEnergy(true,0.5f);
 
         foreach (var i in _lb.birds)
         {
-            i.AddSatiety(0.5f);
-            i.SetRestoreCoreEnergy(true);
+            i.AddSatiety(0.2f);
+            i.SetRestoreCoreEnergy(true,0.5f);
         }
 
         GUIController.instance.Display_Panel_EventDesc(GetIllu(), GetDesc());

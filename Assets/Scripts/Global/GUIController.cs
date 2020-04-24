@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GUIController : MonoBehaviour
@@ -13,6 +11,7 @@ public class GUIController : MonoBehaviour
 
     [Header("面板对象")]
     public Animator animator_MouseClickLeft;
+    public GameObject gameobject_EnergyBar;
     public TextDisplayer textDisplayer;
     public Clock panel_Clock;
     public EventDescription panel_EventDesc;
@@ -21,6 +20,7 @@ public class GUIController : MonoBehaviour
 
     [Header("其他对象")]
     public Text text;
+    public Animator image_Hungry;
 
     private void Awake()
     {
@@ -32,11 +32,26 @@ public class GUIController : MonoBehaviour
     {
        //StartGame();
     }
-
-    public void ReflashEnergyBar(float _core,float _energy) {
-
-
+    #region EnergyBar
+    public void ReflashEnergyBar(float _core, float _energy)
+    {
         energyBar.Reflash(_core, _energy);
+    }
+
+    public void Display_EnergyBar()
+    {
+        gameobject_EnergyBar.SetActive(true);
+    }
+    public void Disable_EnergyBar()
+    {
+        gameobject_EnergyBar.GetComponent<Animator>().SetBool("End", true);
+    }
+    #endregion
+
+
+
+    public void Set_Display_Hungry(bool _v) {
+        image_Hungry.SetBool("Action", _v);
     }
 
     #region Ending
@@ -51,9 +66,9 @@ public class GUIController : MonoBehaviour
 
     public void Display_Text_Ending()
     {
-        Invoke("displayTextEnding", 10f);
+        Invoke("DisplayTextEnding", 10f);
     }
-    private void displayTextEnding() {
+    private void DisplayTextEnding() {
         panel_Ending.StartDisplayResult();
     }
 

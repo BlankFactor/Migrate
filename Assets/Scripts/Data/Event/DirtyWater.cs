@@ -40,6 +40,8 @@ public class DirtyWater : BEvent
             }
         }
 
+        EventRecorder.instance.Add_DirtyWater(count);
+
         illu = Resources.Load<Sprite>("test");
         desc = "肮脏的水源 减少核心体力 : " + value + " 死了 " + count + " 只鸟";
 

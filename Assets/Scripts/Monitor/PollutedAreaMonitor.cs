@@ -21,7 +21,6 @@ public class PollutedAreaMonitor : MonoBehaviour
     [Space]
     public Transform target;
 
-    [DisplayOnly]
     public bool inArea;
     private bool sendedStop;
 
@@ -95,24 +94,5 @@ public class PollutedAreaMonitor : MonoBehaviour
         Gizmos.DrawLine(max, max2);
         Gizmos.color = Color.green;
         Gizmos.DrawLine(min, min2);
-    }
-}
-
-public class DisplayOnly : PropertyAttribute
-{
-
-}
-[CustomPropertyDrawer(typeof(DisplayOnly))]
-public class ReadOnlyDrawer : PropertyDrawer
-{
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        return EditorGUI.GetPropertyHeight(property, label, true);
-    }
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        GUI.enabled = false;
-        EditorGUI.PropertyField(position, property, label, true);
-        GUI.enabled = true;
     }
 }

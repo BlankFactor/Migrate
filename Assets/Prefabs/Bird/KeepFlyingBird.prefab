@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4747042847381975683}
   - component: {fileID: 4747042847381975680}
   - component: {fileID: 4747042847381975802}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: KeepFlyingBird
   m_TagString: Untagged
   m_Icon: {fileID: 0}

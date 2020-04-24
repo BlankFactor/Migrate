@@ -14,7 +14,7 @@ public class Clock : MonoBehaviour
     public float speedScaleWhenClocking = 1;
 
     private bool stop = true;
-
+    private bool click;
     private bool clickable;
 
     public List<BEvent> cur_EventList = new List<BEvent>();
@@ -24,6 +24,7 @@ public class Clock : MonoBehaviour
 
     [Header("对象 ")]
     public LeaderBird leaderBird;
+    public List<Animator> buttonAni = new List<Animator>();
 
 
     public Sprite ss;
@@ -117,6 +118,11 @@ public class Clock : MonoBehaviour
         GUIController.instance.Disable_Panel_EventDesc();
 
         clickable = false;
+
+        click = false;
+
+        foreach (var i in buttonAni)
+            i.SetBool("End", false);
     }
 
     // 传递时间线
@@ -132,6 +138,13 @@ public class Clock : MonoBehaviour
 
     // 设置停留时间并开始计时
     public void SetTime(float _value) {
+        if (click) return;
+
+        foreach (var i in buttonAni)
+            i.SetBool("End", true);
+
+        click = true;
+
         target_Time = _value;
 
         animator.SetBool("Minify", true);

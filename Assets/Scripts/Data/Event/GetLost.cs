@@ -19,7 +19,7 @@ public class GetLost : BEvent
 
             // 40% 概率丢失一只鸟
             if (Random.Range(0, 1.0f) <= 0.4f) {
-                _lb.birds[0].Die();
+                _lb.birds[0].Die(false);
                 count++;
 
                 if (_lb.birds.Count == 0) {
@@ -27,6 +27,8 @@ public class GetLost : BEvent
                 }
             }
         }
+
+        EventRecorder.instance.Add_LoatTheWay(count);
 
         illu = Resources.Load<Sprite>("test");
         desc = count + " 只鸟不知生死";

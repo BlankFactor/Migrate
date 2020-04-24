@@ -20,6 +20,8 @@ public class NaturalSelection : BEvent
 
             desc = "一只被吃了";
             illu = Resources.Load<Sprite>("test");
+
+            EventRecorder.instance.Add_NaturalSel(1);
         }
         else {
             desc = "你溜了";

@@ -34,6 +34,8 @@ public class Trap : BEvent
         }
         else
         {
+            EventRecorder.instance.Add_Poarching(1);
+
             illu = Resources.Load<Sprite>("test");
             desc = "陷阱 被抓";
         }

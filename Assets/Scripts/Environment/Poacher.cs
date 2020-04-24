@@ -152,6 +152,7 @@ public class Poacher : MonoBehaviour
         if (hit)
         {
             hit.transform.SendMessage("Die",true);
+            EventRecorder.instance.Add_Poarching(1);
         }
 
         GameObject bt = Instantiate(bulletTrack);

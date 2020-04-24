@@ -36,7 +36,16 @@ public class TextDisplayer : MonoBehaviour
 
     public void ResetEnable() {
         enable = false;
+        if (stringQueue.Count != 0)
+        {
+            enable = true;
 
-        animator.SetBool("FadeIn", false);
+            string s = stringQueue.Dequeue();
+            text.text = s;
+
+            animator.SetBool("FadeIn", true);
+        }
+        else
+            animator.SetBool("FadeIn", false);
     }
 }

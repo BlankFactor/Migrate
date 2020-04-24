@@ -154,6 +154,9 @@ public class PlayerController : MonoBehaviour
                 {
                     landable = true;
                     GUIController.instance.SetMouseClickLeft_FadeIn(true, true);
+
+                    if(!cols[0].GetComponent<LandPosData>().restOnly)
+                        GUIController.instance.AddString("这里也许可以找到一些食物");
                 }
             }
             else {

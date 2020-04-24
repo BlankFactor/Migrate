@@ -24,6 +24,8 @@ public class Poaching : BEvent
 
             _lb.birds[index].Die();
             GUIController.instance.AddString("你鸟死了");
+
+            EventRecorder.instance.Add_Poarching(1);
         }
         else {
             GUIController.instance.AddString("很幸运 你溜了");

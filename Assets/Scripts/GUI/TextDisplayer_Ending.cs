@@ -8,7 +8,7 @@ public class TextDisplayer_Ending : MonoBehaviour
     private List<string> str = new List<string>();
     private Text text;
     private Animator animator;
-
+    int count = 0;
     private void Awake()
     {
         text = GetComponent<Text>();
@@ -21,10 +21,9 @@ public class TextDisplayer_Ending : MonoBehaviour
     }
 
     public void DisplayText() {
-        if (str.Count.Equals(0)) return;
-
-        text.text = str[0];
-        str.RemoveAt(0);
+        if (str.Count.Equals(count)) return;
+        text.text = str[count];
+        count++;
         animator.SetBool("Display", true);
         
     }
@@ -32,5 +31,16 @@ public class TextDisplayer_Ending : MonoBehaviour
     public void ResetPar()
     {
         animator.SetBool("Display", false);
+
+        if (!str.Count.Equals(count))
+        {
+            Debug.Log(count);
+            text.text = str[count];
+            count++;
+            animator.SetBool("Display", true);
+        }
+        else {
+            GUIController.instance.Display_Panel_Ending();
+        }
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class BBird : MonoBehaviour
 {
     [Header("当前状态")]
-    [ReadOnly]
     public float cur_Speed;
     public float cur_Energy;
     public float cur_CoreEnergy;
@@ -311,6 +310,7 @@ public class BBird : MonoBehaviour
         if (cur_CoreEnergy <= 0)
         {   
             Die();
+            EventRecorder.instance.Add_Hungry(1);
         }
     }
     /// <summary>
@@ -345,7 +345,7 @@ public class BBird : MonoBehaviour
     #endregion
 
     #region 饱食度
-    public void CheckSatiety()
+    public virtual void CheckSatiety()
     {
         if (!hungry && GameManager.instance.gameStart)
         {
@@ -353,14 +353,16 @@ public class BBird : MonoBehaviour
             cur_Satiety = Mathf.Clamp(cur_Satiety, 0, satiety);
 
             if (cur_Satiety == 0)
+            {
                 hungry = true;
+            }
         }
     }
 
     /// <summary>
     /// 重设饱食度
     /// </summary>
-    public void ResetSatiety()
+    public virtual void ResetSatiety()
     {
         hungry = false;
         cur_Satiety = satiety;

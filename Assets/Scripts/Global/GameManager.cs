@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         gameStart = true;
 
         GUIController.instance.SetMouseClickLeft_FadeIn(true, false);
-
+        GUIController.instance.Display_EnergyBar();
         WorldTimeManager.instance.SetStop(false);
         GlobalAudioPlayer.instance.ChangeToBirdListener(true);
         GlobalAudioPlayer.instance.Play_Bgm();

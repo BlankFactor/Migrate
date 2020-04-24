@@ -26,7 +26,7 @@ public class EndingPerform : MonoBehaviour
     }
 
     IEnumerator DisplayEndingPanel() {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(40);
 
         GUIController.instance.Display_Panel_Ending();
     }
@@ -42,6 +42,7 @@ public class EndingPerform : MonoBehaviour
             PlayerController.instance.SetControlable(false);
             CameraManager.instance.ConverToTelephotoCamera();
             GUIController.instance.Display_Text_Ending();
+            GUIController.instance.Disable_EnergyBar();
             lb.SetTired(false);
             lb.isSpeedingUp = false;
             StartCoroutine(ChangeHeight());
