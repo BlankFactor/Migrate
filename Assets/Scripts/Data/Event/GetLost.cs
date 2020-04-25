@@ -6,8 +6,8 @@ public class GetLost : BEvent
 {
     public GetLost()
     {
-        illu = Resources.Load<Sprite>("test");
-        desc = "迷路";
+        illu = Resources.Load<Sprite>("GetLost");
+        desc = "GetLost";
     }
 
     public override void Execute(LeaderBird _lb)
@@ -30,8 +30,11 @@ public class GetLost : BEvent
 
         EventRecorder.instance.Add_LoatTheWay(count);
 
-        illu = Resources.Load<Sprite>("test");
-        desc = count + " 只鸟不知生死";
+        if (count != 0)
+            desc = "\"眼前的建筑就如同是雾霾里的一个个模糊的影子,静静的淹没在这雾霾里\"\n"
+                + TextColorSetter.Red("你的 " + count.ToString() + " 位同伴迷失了方向,再也没有回来");
+        else
+            desc = "\"在这浑浊的钢铁之都中,你努力的寻找着自己的方向\"";
 
         GUIController.instance.Display_Panel_EventDesc(GetIllu(), GetDesc());
     }

@@ -373,7 +373,7 @@ public class BBird : MonoBehaviour
     /// 增加饱食度 
     /// </summary>
     /// <param name="_scale">增量系数 为参数值 * 最大值</param>
-    public void AddSatiety(float _scale)
+    public virtual void AddSatiety(float _scale)
     {
         cur_Satiety += satiety * _scale;
         cur_Satiety = Mathf.Clamp(cur_Satiety, 0, satiety);

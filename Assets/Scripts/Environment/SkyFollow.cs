@@ -8,8 +8,9 @@ public class SkyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 v = target.position;
+        Vector3 v = target.position;
         v.y = transform.position.y;
+        v.z = transform.position.z;
         transform.position = v;
     }
 }

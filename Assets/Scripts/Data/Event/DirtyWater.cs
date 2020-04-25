@@ -6,8 +6,9 @@ public class DirtyWater : BEvent
 {
     public DirtyWater()
     {
-        illu = Resources.Load<Sprite>("test");
-        desc = "肮脏的水源";
+        illu = Resources.Load<Sprite>("DirtyWater");
+        desc = "\"喝水的湖泊中散发着刺鼻的味道,大量的废品漂浮在水中\"\n"
+                    + TextColorSetter.Red("你感到不适,核心大幅减少");
     }
 
     public override void Execute(LeaderBird _lb)
@@ -32,8 +33,8 @@ public class DirtyWater : BEvent
 
         int temp = _lb.birds.Count;
         for (int i = 0; i < temp; i++) {
-            if (Random.Range(0, 1.0f) <= 0.6f) {
-                _lb.birds[0].Die();
+            if (Random.Range(0, 1.0f) <= 0.45f) {
+                _lb.birds[0].Die(false);
                 count++;
                 if (_lb.birds.Count == 0)
                     break;
@@ -42,8 +43,12 @@ public class DirtyWater : BEvent
 
         EventRecorder.instance.Add_DirtyWater(count);
 
-        illu = Resources.Load<Sprite>("test");
-        desc = "肮脏的水源 减少核心体力 : " + value + " 死了 " + count + " 只鸟";
+        if(count != 0)
+        desc = "\"喝水的湖泊中散发着刺鼻的味道,大量的废品漂浮在水中\"\n"
+            + TextColorSetter.Red("你感到不适,核心大幅减少\n" + "你失去了 "+count+" 位同伴");
+        else
+            desc = "\"喝水的湖泊中散发着刺鼻的味道,大量的废品漂浮在水中\"\n"
+            + TextColorSetter.Red("你感到不适,核心大幅减少\n");
 
         GUIController.instance.Display_Panel_EventDesc(GetIllu(), GetDesc());
     }

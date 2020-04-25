@@ -6,8 +6,8 @@ public class NaturalSelection : BEvent
 {
     public NaturalSelection()
     {
-        illu = Resources.Load<Sprite>("test");
-        desc = "被吃";
+        illu = Resources.Load<Sprite>("NaturalSelection_Die");
+        desc = "物竞天择";
     }
 
     public override void Execute(LeaderBird _lb)
@@ -18,14 +18,16 @@ public class NaturalSelection : BEvent
 
             _lb.birds[index].Die(false);
 
-            desc = "一只被吃了";
-            illu = Resources.Load<Sprite>("test");
+            desc = "\"适者只能活着,强者才能生存\"\n"
+                + TextColorSetter.Red("你的一位同伴丧生了");
+            illu = Resources.Load<Sprite>("NaturalSelection_Die");
 
             EventRecorder.instance.Add_NaturalSel(1);
         }
         else {
-            desc = "你溜了";
-            illu = Resources.Load<Sprite>("test");
+            desc = "\"敏锐的洞察力也许会救你一命\"\n"
+                + TextColorSetter.Green("你的一位同伴死里逃生");
+            illu = Resources.Load<Sprite>("NaturalSelection_RunAway");
         }
 
         GUIController.instance.Display_Panel_EventDesc(GetIllu(), GetDesc());

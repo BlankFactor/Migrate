@@ -14,20 +14,23 @@ public class Clock : MonoBehaviour
     public float speedScaleWhenClocking = 1;
 
     private bool stop = true;
+    [SerializeField]
     private bool click;
     private bool clickable;
 
     public List<BEvent> cur_EventList = new List<BEvent>();
+
+    private float initialTime;
 
     bool check;
     EventSpawner.eventName cur_Event;
 
     [Header("对象 ")]
     public LeaderBird leaderBird;
-    public List<Animator> buttonAni = new List<Animator>();
+    public RectTransform rectTrans;
+    public RectTransform rectTrans_Outline;
+    private float maxAngle = 360f;
 
-
-    public Sprite ss;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -89,6 +92,11 @@ public class Clock : MonoBehaviour
         }
     }
 
+    public void ReflashEularAngles(float _v) {
+        rectTrans.localEulerAngles = new Vector3(0, 0, (_v + 0.45f) * maxAngle);
+        rectTrans_Outline.localEulerAngles = new Vector3(0, 0, (_v - initialTime) * maxAngle);
+    }
+
     private void OnEnable()
     {
         WorldTimeManager.instance.SetStop(true);
@@ -97,10 +105,18 @@ public class Clock : MonoBehaviour
         clickable = false;
 
         WorldTimeManager.instance.SetSpeedScale(speedScaleWhenClocking);
+
+        GUIController.instance.AddString("选择在此处停留的时间,停留的越久,也许发现的更多");
+
+        initialTime = WorldTimeManager.instance.time;
+        rectTrans_Outline.localEulerAngles = Vector3.zero;
     }
 
     private void OnDisable()
     {
+        initialTime = 0;
+        rectTrans_Outline.localEulerAngles = Vector3.zero;
+
         WorldTimeManager.instance.SetStop(true);
         stop = true;
 
@@ -120,9 +136,6 @@ public class Clock : MonoBehaviour
         clickable = false;
 
         click = false;
-
-        foreach (var i in buttonAni)
-            i.SetBool("End", false);
     }
 
     // 传递时间线
@@ -139,9 +152,6 @@ public class Clock : MonoBehaviour
     // 设置停留时间并开始计时
     public void SetTime(float _value) {
         if (click) return;
-
-        foreach (var i in buttonAni)
-            i.SetBool("End", true);
 
         click = true;
 

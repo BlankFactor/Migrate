@@ -33,7 +33,7 @@ public class ColorController : MonoBehaviour,ISubject
         List<IObserver> temp = new List<IObserver>();
 
         foreach (var v in observers) {
-            if (v.GetGameObject().tag.Equals("Firefly")) {
+            if (v.GetGameObject().tag.Equals("Firefly") && v.GetGameObject().GetComponent<Firefly>().destory) {
                 temp.Add(v);
             }
         }

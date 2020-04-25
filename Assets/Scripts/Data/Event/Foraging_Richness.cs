@@ -7,8 +7,9 @@ public class Foraging_Richness : BEvent
 
     public Foraging_Richness()
     {
-        illu = Resources.Load<Sprite>("test");
-        desc = "觅食_多";
+        illu = Resources.Load<Sprite>("Foraging_Richness");
+        desc = "\"这里的食物是如此丰富,只需要花费一点时间,生存便如此简单\"\n" 
+            + TextColorSetter.Green("你已经毫无饥饿感,体力和核心回复的更加迅速");
     }
 
     public override void Execute(LeaderBird _lb)

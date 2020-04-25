@@ -34,7 +34,6 @@ public class TextDisplayer_Ending : MonoBehaviour
 
         if (!str.Count.Equals(count))
         {
-            Debug.Log(count);
             text.text = str[count];
             count++;
             animator.SetBool("Display", true);

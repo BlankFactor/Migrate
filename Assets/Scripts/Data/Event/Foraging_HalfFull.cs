@@ -6,8 +6,9 @@ public class Foraging_HalfFull : BEvent
 {
     public Foraging_HalfFull()
     {
-        illu = Resources.Load<Sprite>("test");
-        desc = "觅食_少";
+        illu = Resources.Load<Sprite>("Foraging_HalfFull");
+        desc = "\"也许在这贫瘠之地,还有你生存的机会\"\n"
+            + TextColorSetter.Green("你的饥饿感仍在持续但已好了许多,核心将缓慢回复");
     }
 
     public override void Execute(LeaderBird _lb)

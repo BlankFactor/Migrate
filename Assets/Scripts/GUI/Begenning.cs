@@ -27,6 +27,7 @@ public class Begenning : MonoBehaviour
             PlayerController.instance.TakeOffForcibly();
             CameraManager.instance.RemoveTempCamera();
             this.enabled = false;
+            gameObject.SetActive(false);
         }
 
         //

@@ -83,6 +83,8 @@ public class WorldTimeManager : MonoBehaviour
 
         time = (1440f - sec) / 1440f;
         hour = time * 24;
+
+        GUIController.instance.ReflashEularAngles(time);
     }
 
     /// <summary>

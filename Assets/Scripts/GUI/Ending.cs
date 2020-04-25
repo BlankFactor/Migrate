@@ -21,8 +21,10 @@ public class Ending : MonoBehaviour
 
     public void FadeIn()
     {
-        if(animator_Panel.gameObject.GetComponent<Image>().color.a != 1)
-            animator_Panel.Play("Panel_Ending_FadeIn");
+        animator_Panel.Play("Panel_Ending_FadeIn");
+
+        if(!GameManager.instance.leaderAlive)
+            text.gameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
     }
 
     public void StartDisplayResult() {
@@ -36,7 +38,7 @@ public class Ending : MonoBehaviour
                 + EventRecorder.instance.count_DirtyWater.ToString() + " 只鸟死于被污染的水源\n"
                 + EventRecorder.instance.count_Poarching.ToString() + " 只鸟死于冷酷的枪下\n"
                 + EventRecorder.instance.count_LostTheWay.ToString() + " 只鸟迷失在灰蒙的钢铁之都中\n");
-            str.Add("环境破坏 偷猎者 污染");
+            str.Add("环境破坏 污染 偷猎者");
             str.Add("使得原先庞大的队伍\n" + "变得屈指可数");
             str.Add("尽管途中充满了艰难险阻\n" + "但你终于到达了目的地");
 
@@ -49,7 +51,16 @@ public class Ending : MonoBehaviour
             end = true;
         }
         else {
-            str.Add("你死了 就这样 没做完");
+            str.Add("这趟旅途随着昏暗的视线永远停止了");
+            str.Add("环境破坏 污染 偷猎者");
+            str.Add("成为了途中一个又一个难以翻越的壁垒");
+            str.Add("直到无法再前进一步");
+
+            str.Add("策划 : 陆智恒 罗家伟\n"
+                + "程序 : 罗家伟\n"
+                + "美术 : 陆智恒\n"
+                + "音乐来源 : bensound\n"
+                + "音效来源 : 51miz\n");
 
             end = true;
         }

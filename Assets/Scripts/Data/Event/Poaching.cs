@@ -8,8 +8,8 @@ public class Poaching : BEvent
 
     public Poaching()
     {
-        illu = Resources.Load<Sprite>("test");
-        desc = "猎人来了";
+        illu = Resources.Load<Sprite>("Poaching_Miss");
+        desc = "Poaching";
 
         poacher = Resources.Load<GameObject>("Prefabs\\Poacher_Res");
     }
@@ -23,12 +23,12 @@ public class Poaching : BEvent
             int index = Random.Range(0, count);
 
             _lb.birds[index].Die();
-            GUIController.instance.AddString("你鸟死了");
+            GUIController.instance.AddString("\"冰冷的猎枪夺走了一个生命,快逃吧\"");
 
             EventRecorder.instance.Add_Poarching(1);
         }
         else {
-            GUIController.instance.AddString("很幸运 你溜了");
+            GUIController.instance.AddString("\"在猎枪射中你之前,快逃吧\"");
         }
 
         GUIController.instance.Shutdown_Clock();

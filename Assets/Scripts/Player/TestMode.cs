@@ -29,10 +29,12 @@ public class TestMode : MonoBehaviour
             if (!testMode) {
                 testMode = true;
                 Panel.SetActive(true);
+                PlayerController.instance.SetCursor(true);
             }
             else{
                 testMode = false;
                 Panel.SetActive(false);
+                PlayerController.instance.SetCursor(false);
             }
 
 

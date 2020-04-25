@@ -20,6 +20,8 @@ public class Firefly : MonoBehaviour,IObserver
     private SpriteRenderer sprite;
     private Light2D light2d;
 
+    public bool destory = true;
+
     delegate void delegate_CheckLifetime();
     delegate_CheckLifetime CheckLifetime;
 

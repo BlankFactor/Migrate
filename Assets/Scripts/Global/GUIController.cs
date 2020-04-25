@@ -21,6 +21,9 @@ public class GUIController : MonoBehaviour
     [Header("其他对象")]
     public Text text;
     public Animator image_Hungry;
+    public GameObject fire;
+    public Animator ani_EnergyRing;
+    public Animator ani_Core;
 
     private void Awake()
     {
@@ -32,6 +35,13 @@ public class GUIController : MonoBehaviour
     {
        //StartGame();
     }
+
+    private void Update()
+    {
+
+        
+    }
+
     #region EnergyBar
     public void ReflashEnergyBar(float _core, float _energy)
     {
@@ -48,7 +58,14 @@ public class GUIController : MonoBehaviour
     }
     #endregion
 
+    public void Set_Display_SpeedUp(bool _v) {
+        fire.SetActive(_v);
+        ani_EnergyRing.SetBool("SpeedUp", _v);
+    }
 
+    public void Set_Display_Core_Reducing(bool _v) {
+        ani_Core.SetBool("Reducing", _v);
+    }
 
     public void Set_Display_Hungry(bool _v) {
         image_Hungry.SetBool("Action", _v);
@@ -97,6 +114,10 @@ public class GUIController : MonoBehaviour
     #endregion
 
     #region Clock
+
+    public void ReflashEularAngles(float _v) {
+        panel_Clock.ReflashEularAngles(_v);
+    }
 
     public void Shutdown_Clock() {
         panel_Clock.gameObject.SetActive(false);

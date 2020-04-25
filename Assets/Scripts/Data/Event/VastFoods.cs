@@ -5,8 +5,9 @@ using UnityEngine;
 public class VastFoods : BEvent
 {
     public VastFoods() {
-        illu = Resources.Load<Sprite>("test");
-        desc = "汇编是世界上最好的编程语言";
+        illu = Resources.Load<Sprite>("VastFood");
+        desc = "\"你在丛林中发现了大量的食物,这足以让你填饱肚子\"\n"
+            + TextColorSetter.Green("你的核心大幅回复且你不在感到饥饿");
     }
 
     public override void Execute(LeaderBird _lb)

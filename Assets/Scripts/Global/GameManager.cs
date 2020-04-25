@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
         WorldTimeManager.instance.SetStop(false);
         GlobalAudioPlayer.instance.ChangeToBirdListener(true);
         GlobalAudioPlayer.instance.Play_Bgm();
+
+        GUIController.instance.AddString("注意自己的体力,充沛的体力才是完成这趟旅途的关键");
     }
     public void EndGame() {
         gameStart = false;

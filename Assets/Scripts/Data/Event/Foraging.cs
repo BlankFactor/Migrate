@@ -6,8 +6,9 @@ public class Foraging : BEvent
 {
     public Foraging()
     {
-        illu = Resources.Load<Sprite>("test");
-        desc = "觅食";
+        illu = Resources.Load<Sprite>("Foraging");
+        desc = "\"只要愿意花上足够多的时间,在此处寻找到食物也并不是很难的事情\"\n"
+            + TextColorSetter.Green("你不再感到饥饿,核心将持续回复");
     }
 
     public override void Execute(LeaderBird _lb)

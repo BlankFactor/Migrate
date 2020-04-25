@@ -45,8 +45,8 @@ public class LeaderBird : BBird
         base.Start();
         fbt.CreateTrigger(pivotDistance, pivotVerticalOffset, farBorderPlane);
 
-        cur_Energy = 75;
-        cur_CoreEnergy = 75;
+        cur_Energy = 60;
+        cur_CoreEnergy = 60;
     }
 
     protected override void CheckEnergy()
@@ -63,7 +63,7 @@ public class LeaderBird : BBird
             // vignette.weight = (energy_Threadhold - cur_Energy) / energy_Threadhold;
             // vignette.weight = Mathf.Clamp(vignette.weight, 0, 1);
             SetTired(true);
-            GUIController.instance.AddString("视线变的模糊又昏暗,每扇动一次翅膀变得乏力");
+            GUIController.instance.AddString("视线变的模糊又昏暗,每扇动一次翅膀变得乏力,停下来休息才是明智之举");
         }
         else if (tired && alive && cur_Energy > energy_Threadhold)
         {
@@ -79,10 +79,12 @@ public class LeaderBird : BBird
         if (tired)
         {
             dof.SetBool("DOF", true);
+            GUIController.instance.Set_Display_Core_Reducing(true);
             maxSpeed -= 2;
         }
         else {
             dof.SetBool("DOF", false);
+            GUIController.instance.Set_Display_Core_Reducing(false);
             maxSpeed += 2;
         }
     }
@@ -180,6 +182,8 @@ public class LeaderBird : BBird
     public override void SetLanding(LandPosData _lp)
     {
         base.SetLanding(_lp);
+
+        GUIController.instance.Set_Display_SpeedUp(false);
 
         foreach (var v in birds) {
             v.Command_Land(_lp);
@@ -301,8 +305,10 @@ public class LeaderBird : BBird
             if (cur_Satiety == 0)
             {
                 hungry = true;
+                GUIController.instance.AddString("饥饿带来的乏力感正在蚕食着全身,找到食物是现在最重要的事情");
+
                 GUIController.instance.Set_Display_Hungry(true);
-                GUIController.instance.AddString("饥饿带来的乏力感正在蚕食着全身");
+                GUIController.instance.Set_Display_Core_Reducing(true);
             }
         }
     }
@@ -312,6 +318,14 @@ public class LeaderBird : BBird
         hungry = false;
         cur_Satiety = satiety;
         GUIController.instance.Set_Display_Hungry(false);
+        GUIController.instance.Set_Display_Core_Reducing(false);
+    }
+
+    public override void AddSatiety(float _scale)
+    {
+        base.AddSatiety(_scale);
+        GUIController.instance.Set_Display_Hungry(false);
+        GUIController.instance.Set_Display_Core_Reducing(false);
     }
 
     public List<FollowerBird> GetFollowers() {
@@ -329,7 +343,7 @@ public class LeaderBird : BBird
         rid.gravityScale = 0.8f;
 
         // Destroy(gameObject, 5);
-        
+        GameManager.instance.leaderBirdDead();
         GUIController.instance.Disable_EnergyBar();
         GUIController.instance.Display_Panel_Ending();
 
@@ -339,8 +353,6 @@ public class LeaderBird : BBird
             GlobalAudioPlayer.instance.Play_BirdDie();
 
         WorldTimeManager.instance.SetStop(true);
-
-        GameManager.instance.leaderBirdDead();
         CameraManager.instance.ClearFollowTarget();
     }
 

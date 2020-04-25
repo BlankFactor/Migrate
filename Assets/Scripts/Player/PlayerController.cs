@@ -54,14 +54,17 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //HideCursor();
+        SetCursor(false);
 
         landed = true;
         ResetBirdHeight();
     }
 
-    void HideCursor() {
-        Cursor.lockState = CursorLockMode.Locked;
+    public void SetCursor(bool _v) {
+        if(!_v)
+            Cursor.lockState = CursorLockMode.Locked;
+        else
+            Cursor.lockState = CursorLockMode.None;
     }
 
     private void Update()
@@ -97,7 +100,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void ResetBirdHeight() {
-        birdHeight = (border_Top + 2 * border_Offset + border_Bottom) / 2;
+        birdHeight = (border_Top + 2 * border_Offset + border_Bottom) / 4;
     }
 
     /// <summary>
@@ -123,10 +126,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && controllable)
         {
             speedUpPressed = true;
+            GUIController.instance.Set_Display_SpeedUp(speedUpPressed);
             bird.SetSpeedUp(speedUpPressed);
         }
         else if (Input.GetMouseButtonUp(1) && controllable) {
             speedUpPressed = false;
+            GUIController.instance.Set_Display_SpeedUp(speedUpPressed);
             bird.SetSpeedUp(speedUpPressed);
         }
     }
