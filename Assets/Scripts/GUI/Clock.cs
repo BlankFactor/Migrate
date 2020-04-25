@@ -110,6 +110,8 @@ public class Clock : MonoBehaviour
 
         initialTime = WorldTimeManager.instance.time;
         rectTrans_Outline.localEulerAngles = Vector3.zero;
+
+        PlayerController.instance.SetCursor(true);
     }
 
     private void OnDisable()
@@ -136,6 +138,7 @@ public class Clock : MonoBehaviour
         clickable = false;
 
         click = false;
+        PlayerController.instance.SetCursor(false);
     }
 
     // 传递时间线

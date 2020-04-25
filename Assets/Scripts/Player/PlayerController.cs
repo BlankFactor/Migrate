@@ -61,10 +61,16 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SetCursor(bool _v) {
-        if(!_v)
+        if (!_v)
+        {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         else
+        {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private void Update()
