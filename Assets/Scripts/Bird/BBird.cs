@@ -308,9 +308,11 @@ public class BBird : MonoBehaviour
         }
 
         if (cur_CoreEnergy <= 0)
-        {   
+        {
+            if (hungry && alive)
+                EventRecorder.instance.Add_Hungry(1);
+
             Die();
-            EventRecorder.instance.Add_Hungry(1);
         }
     }
     /// <summary>
