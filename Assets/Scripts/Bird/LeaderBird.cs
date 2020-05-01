@@ -28,6 +28,13 @@ public class LeaderBird : BBird
     [Space]
     public float energy_Threadhold = 20;
 
+    //***** Test code
+    public bool deadable = true;
+    public void SetDeadable(bool _v) {
+        deadable = _v;
+    }
+    //*****
+
     public override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -334,6 +341,10 @@ public class LeaderBird : BBird
 
      public override void Die(bool _sound = true)
     {
+        // temp ***
+        if (!deadable) return;
+        // ***
+
         isFlying = false;
         canTakeOff = false;
 

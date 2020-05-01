@@ -65,6 +65,10 @@ public class WorldTimeManager : MonoBehaviour
         return Time.deltaTime * timeScale * speedScale;
     }
 
+    public float NormalizeDeltaTime() {
+        return DeltaTime() / 1440f;
+    }
+
     private void RecordTime() {
 
         if (!keepDayNight)

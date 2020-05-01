@@ -44,7 +44,8 @@ public class EndingPerform : MonoBehaviour
             GUIController.instance.Display_Text_Ending();
             GUIController.instance.Disable_EnergyBar();
             lb.SetTired(false);
-            lb.isSpeedingUp = false;
+            lb.SetSpeedUp(false);
+            lb.maxSpeed = 5;
             StartCoroutine(ChangeHeight());
         }
     }

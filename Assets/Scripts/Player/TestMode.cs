@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class TestMode : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class TestMode : MonoBehaviour
     public Text sal;
     public Text ene;
     public Text core;
+    public Text voNight;
+    public Text vo;
+    public Text deadable;
+    
+    [Space]
+    public Volume volume_Night;
+    public Volume volume;
 
     void Start()
     {
@@ -49,6 +57,9 @@ public class TestMode : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F2))
                 bird.Die();
 
+            if (Input.GetKeyDown(KeyCode.F3))
+                bird.SetDeadable(!bird.deadable);
+
             float x = Input.GetAxis("Horizontal");
             Vector3 v3 = bird.transform.position;
             v3.x += x * Time.deltaTime * 300f;
@@ -59,6 +70,9 @@ public class TestMode : MonoBehaviour
             sal.text = bird.cur_Satiety.ToString("0.0");
             ene.text = bird.cur_Energy.ToString("0.0");
             core.text = bird.cur_CoreEnergy.ToString("0.0");
+            vo.text = volume.weight.ToString("0.00");
+            voNight.text = volume_Night.weight.ToString("0.00");
+            deadable.text = bird.deadable.ToString();
         }
 }
 }
