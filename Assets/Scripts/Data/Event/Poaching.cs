@@ -42,8 +42,8 @@ public class Poaching : BEvent
         }
 
         GameObject.Find("PlayerController").GetComponent<PlayerController>().TakeOffForcibly();
-    }
 
+    }
     public override string GetDesc()
     {
         return desc;

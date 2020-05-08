@@ -203,7 +203,12 @@ public class PlayerController : MonoBehaviour
         ResetBirdHeight();
 
         Invoke("GrandControl", 0.5f);
+        Invoke("StartRecordTime",0.1f);
         CameraManager.instance.ConverToNearCamera();
+    }
+
+    void StartRecordTime() {
+        WorldTimeManager.instance.SetStop(false);
     }
 
     /// <summary>

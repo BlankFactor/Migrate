@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Clock : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class Clock : MonoBehaviour
     public RectTransform rectTrans;
     public RectTransform rectTrans_Outline;
     private float maxAngle = 360f;
+
+    public List<Image> button_Image;
+    public Color color_Origin;
+    public Color color_Clicked;
 
     private void Start()
     {
@@ -112,6 +117,8 @@ public class Clock : MonoBehaviour
         rectTrans_Outline.localEulerAngles = Vector3.zero;
 
         PlayerController.instance.SetCursor(true);
+
+        ResetButtonColor();
     }
 
     private void OnDisable()
@@ -164,6 +171,21 @@ public class Clock : MonoBehaviour
 
         stop = false;
         WorldTimeManager.instance.SetStop(false);
+
+        SetButtonClicked(_value);
+    }
+
+    void ResetButtonColor() {
+        foreach (var i in button_Image) {
+            i.color = color_Origin;
+        }
+    }
+
+    void SetButtonClicked(float _v) {
+        foreach (var i in button_Image) {
+            if (i.transform.name.Contains(_v.ToString()))
+                i.color = color_Clicked;
+        }
     }
 
     public void ClearTimeline() {
