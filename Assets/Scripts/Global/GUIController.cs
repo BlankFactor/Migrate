@@ -36,12 +36,6 @@ public class GUIController : MonoBehaviour
        //StartGame();
     }
 
-    private void Update()
-    {
-
-        
-    }
-
     #region EnergyBar
     public void ReflashEnergyBar(float _core, float _energy)
     {

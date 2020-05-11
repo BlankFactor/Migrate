@@ -18,6 +18,7 @@ public class GlobalAudioPlayer : MonoBehaviour
 
     [Header("音频片")]
     public AudioClip sound_Bgm;
+    public AudioClip sound_Bgm_End;
     public AudioClip sound_Bell;
     public AudioClip sound_Gunfire;
     public AudioClip sound_BirdDie;
@@ -74,6 +75,16 @@ public class GlobalAudioPlayer : MonoBehaviour
     public void StartBgmFadeIn()
     {
         StartCoroutine(BgmFadeIn());
+    }
+
+    public void SwitchBgm() {
+        if (audio_Music.clip.Equals(sound_Bgm))
+        {
+            audio_Music.clip = sound_Bgm_End;
+        }
+        else {
+            audio_Music.clip = sound_Bgm;
+        }
     }
 
     IEnumerator BgmFadeIn()

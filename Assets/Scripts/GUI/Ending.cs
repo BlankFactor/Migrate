@@ -45,7 +45,7 @@ public class Ending : MonoBehaviour
             str.Add("策划 : 陆智恒 罗家伟\n"
                 + "程序 : 罗家伟\n"
                 + "美术 : 陆智恒\n"
-                + "音乐来源 : bensound\n"
+                + "音乐来源 : bensound & filmstro\n"
                 + "音效来源 : 51miz\n");
 
             end = true;

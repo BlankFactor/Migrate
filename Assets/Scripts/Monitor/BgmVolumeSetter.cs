@@ -16,6 +16,7 @@ public class BgmVolumeSetter : MonoBehaviour
 
             if (fadeIn)
             {
+                GlobalAudioPlayer.instance.SwitchBgm();
                 GlobalAudioPlayer.instance.StartBgmFadeIn();
             }
             else
