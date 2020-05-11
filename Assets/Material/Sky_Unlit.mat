@@ -43,6 +43,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _FogColor: {r: 0.23953998, g: 0.33072552, b: 0.36470157, a: 0.96883285}
+    - _FogColor: {r: 0.21354455, g: 0.45698136, b: 0.88646746, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _TinyColor: {r: 1, g: 1, b: 1, a: 1}
