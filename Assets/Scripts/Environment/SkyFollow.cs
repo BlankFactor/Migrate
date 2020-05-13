@@ -11,6 +11,10 @@ public class SkyFollow : MonoBehaviour
         Vector3 v = target.position;
         v.y = transform.position.y;
         v.z = transform.position.z;
+
+        if (v.x < transform.position.x)
+            return;
+
         transform.position = v;
     }
 }

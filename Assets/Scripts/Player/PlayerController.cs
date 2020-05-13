@@ -60,6 +60,11 @@ public class PlayerController : MonoBehaviour
         ResetBirdHeight();
     }
 
+    private void OnDisable()
+    {
+        SetCursor(true);
+    }
+
     public void SetCursor(bool _v) {
         if (!_v)
         {
