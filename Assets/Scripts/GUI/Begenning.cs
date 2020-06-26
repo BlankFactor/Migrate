@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.Rendering;
+using UnityEngine.Experimental.Rendering.Universal;
 public class Begenning : MonoBehaviour
 {
     public List<string> stringGroup;
@@ -11,23 +13,32 @@ public class Begenning : MonoBehaviour
     public Text text;
     public Animator ani;
     private int stringIndex = 0;
-    private bool listenning = false;
+    private bool listenning = true;
+
+    [Header("临时使用,开幕")]
+    public Volume bloom;
+    public Light2D light;
+    public float speed_FadeIn = 0.3f;
 
     private void Start()
     {
         //DisplayText();
+        light.intensity = 0.1f;
     }
 
     private void Update()
     {
         // 临时使用 不保留原开场演出
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && listenning) {
             GameManager.instance.StartGame();
             PlayerController.instance.TakeOffForcibly();
             CameraManager.instance.RemoveTempCamera();
-            this.enabled = false;
-            gameObject.SetActive(false);
+
+            listenning = !listenning;
+            StartCoroutine(FadeIn());
+            //this.enabled = false;
+            //gameObject.SetActive(false);
         }
 
         //
@@ -35,6 +46,24 @@ public class Begenning : MonoBehaviour
         if (listenning) {
             //HandleInput();
         }
+    }
+
+    public IEnumerator FadeIn()
+    {
+        while(bloom.weight!=0 || light.intensity != 1)
+        {
+            bloom.weight -= Time.deltaTime * speed_FadeIn;
+            light.intensity += Time.deltaTime * speed_FadeIn;
+
+            bloom.weight = Mathf.Clamp(bloom.weight, 0, 1);
+            light.intensity = Mathf.Clamp(light.intensity, 0, 1);
+            yield return Time.deltaTime;
+        }
+
+        this.enabled = false;
+        gameObject.SetActive(false);
+        yield break;
+
     }
 
     public void HandleInput() {
