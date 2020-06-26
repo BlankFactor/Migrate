@@ -22,7 +22,7 @@ public class SceneSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!enable) {
+        if (!enable && collision.tag.Equals(targetTag)) {
             enable = true;
             SpawnScene(setActitve);
             Destroy(gameObject, 5f);

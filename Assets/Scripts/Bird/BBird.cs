@@ -171,6 +171,8 @@ public class BBird : MonoBehaviour
 
 
     public virtual void Die(bool _sound = true) {
+        if (!alive) return;
+
         isFlying = false;
         canTakeOff = false;
 
