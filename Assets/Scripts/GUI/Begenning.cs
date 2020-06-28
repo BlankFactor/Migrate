@@ -15,6 +15,8 @@ public class Begenning : MonoBehaviour
     private int stringIndex = 0;
     private bool listenning = true;
 
+    public Animator ani_Mouse;
+
     [Header("临时使用,开幕")]
     public Volume bloom;
     public Light2D light;
@@ -34,7 +36,7 @@ public class Begenning : MonoBehaviour
             GameManager.instance.StartGame();
             PlayerController.instance.TakeOffForcibly();
             CameraManager.instance.RemoveTempCamera();
-
+            ani_Mouse.Play("Begin_Mouse_FadeOut");
             listenning = !listenning;
             StartCoroutine(FadeIn());
             //this.enabled = false;

@@ -211,6 +211,8 @@ public class BBird : MonoBehaviour
     }
 
     public virtual void SetSpeedUp(bool _v) {
+        if (isSpeedingUp == _v)
+            return;
         isSpeedingUp = _v;
         if (isSpeedingUp)
             maxSpeed += inc_Speed;
